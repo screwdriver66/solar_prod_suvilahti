@@ -120,3 +120,22 @@ def calc_diffuse_irrad(T_rd, alpha_s, G_on, beta):
     F_d = calc_f_d(T_rd, alpha_s, T_L=2)
     G_d = G_on * T_rd * F_d * ((1+np.cos(beta*np.pi/180))/2)
     return G_d
+
+
+def calc_glob_irrad(N,time,lon=longtitude,delta_GMT=0,phi=latitude):
+    gamma = 0
+    beta=45
+    omega = calc_omega(N, lon, delta_GMT, time)
+    delta = calc_delta(N)
+    alpha_s = calc_alpha_s(phi, delta, omega)
+    if alpha_s>0:
+        gamma_s = calc_gamma_s(alpha_s, phi, delta, omega)
+        cos_theta_i = calc_cos_theta_i(alpha_s, gamma_s, gamma, beta)
+        if cos_theta_i>0:
+            G_on = calc_G_on(N)
+            G_beam = calc_direct_irrad(G_on, alpha_s, cos_theta_i, T_L=2)
+            T_rd = calc_t_rd(T_L=2)
+            G_d = calc_diffuse_irrad(T_rd, alpha_s, G_on, beta)
+
+            G_glob = G_beam + G_d
+            return G_glob
