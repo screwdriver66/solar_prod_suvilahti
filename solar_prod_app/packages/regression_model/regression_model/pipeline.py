@@ -13,14 +13,15 @@ _logger = logging.getLogger(__name__)
 
 energy_pipe = Pipeline(
     [
-        ("numerical_imputer", pp.NumericalImputer(variables=config.NUMERICAL_VARS_WITH_NA,reference_df=config.IMPUTER_DF_FILE),),
-        ("wind_discretizer", pp.WindDiscretizer(variables=config.WIND_DISCRETIZER_VAR),),
-        ("discretizer_into_binary", pp.DiscretizerNumericalIntoBinary(variables=config.NUM_TO_BINARY,boundaries=config.BINARY_BOUNDARIES),),
-        ("temporal_estimator_hour", pp.TemporalVariableEstimatorHour(variables=config.TEMPORAL_HOUR),),
-        ("temporal_estimator_day", pp.TemporalVariableEstimatorDay(variables=config.TEMPORAL_DAY),),
-        ("solar_angle_estimator", pp.SolarAngleEstimator(variables=config.SOLAR_ANGLE_VAR),),
-        ("solar_azimuth_estimator", pp.SolarAzimuthEstimator(variables=config.SUN_AZIMUTH_VAR),),
+        ('wind_disc', pp.WindDiscretizer(variables=config.WIND_DISCRETE)),
+        ('num_to_binary', pp.DiscretizerNumericalIntoBinary(boundaries=config.BINARY_BOUNDARIES, variables=config.NUM_TO_BINARY)),
+        # ('cloud_binary', pp.DiscretizerNumericalIntoBinary(boundaries=5, variables=['Cloud amount (1/8)'])),
+        ('temporal_hour', pp.TemporalHour(variables=config.TEMPORAL_HOUR)),
+        ('temporal_dayofyear', pp.TemporalDayofYear(variables=config.TEMPORAL_DAY)),
+        ('solar_angle', pp.SolarElevAngle(var_name=config.SOLAR_ANGLE, day=config.TEMPORAL_DAY, hour=config.TEMPORAL_HOUR)),
+        ('sun_azimuth', pp.SunAzimuth(var_name=config.SUN_AZIMUTH, day=config.TEMPORAL_DAY, hour=config.TEMPORAL_HOUR)),
+        ('drop_features', pp.DropUnnecessaryFeatures(variables_to_drop=config.DROP_FEATURES)),
         ("scaler", StandardScaler()),
-        ("random_forest", RandomForestRegressor(n_estimators=5000, max_depth=10, random_state=42))
+        ("random_forest", RandomForestRegressor(n_estimators=2, max_depth=2, random_state=42))
     ]
 )

@@ -5,26 +5,26 @@ from regression_model.processing.data_management import load_pipeline
 from regression_model.config import config
 from regression_model.processing.validation import validate_inputs
 from regression_model import __version__ as _version
- import logging
+import logging
 
- _logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
- pipeline_file_name = f"{config.PIPELINE_SAVE_FILE}{_version}.pkl"
- _energy_pipe = load_pipeline(file_name = pipeline_file_name)
+pipeline_file_name = f"{config.PIPELINE_SAVE_FILE}{_version}.pkl"
+_energy_pipe = load_pipeline(file_name = pipeline_file_name)
 
- def make_prediction(*, input_data) -> dict:
-     """Make predictions using the saved model pipeline."""
+def make_prediction(*, input_data) -> dict:
+    """Make predictions using the saved model pipeline."""
 
-     data = pd.DataFrame(input_data)
-     validated_data = validate_inputs(input_data=data)
-     prediction = _energy_pipe.predict(validated_data[config.FEATURES])
+    data = pd.DataFrame(input_data)
+    validated_data = validate_inputs(input_data=data)
+    prediction = _energy_pipe.predict(validated_data[config.FEATURES])
 
-     results = {"predictions": prediction, "version": _version}
+    results = {"predictions": prediction, "version": _version}
 
-     _logger.info(
-      f"Making predictions with model version: {_version} "
-      f"Inputs: {validated_data} "
-      f"Predictions: {results}"
-     )
+    _logger.info(
+     f"Making predictions with model version: {_version} "
+     f"Inputs: {validated_data} "
+     f"Predictions: {results}"
+    )
 
-     return results
+    return results

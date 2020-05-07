@@ -15,34 +15,25 @@ DATASET_DIR = PACKAGE_ROOT / "datasets"
 TESTING_DATA_FILE = "test.csv"
 TRAINING_DATA_FILE = "train.csv"
 TARGET = "Value (kWh)"
-IMPUTER_DF_FILE = "reference_df.csv"
-
+DATETIME_INDEX = "datetime_converted"
 #variables
 FEATURES = [
+            'datetime_converted',
+            'Cloud amount (1/8)',
             'Pressure (msl) (hPa)',
             'Relative humidity (%)',
+            'Precipitation intensity (mm/h)',
+            'Snow depth (cm)',
             'Air temperature (degC)',
             'Dew-point temperature (degC)',
+            'Horizontal visibility (m)',
+            'Wind direction (deg)',
             'Gust speed (m/s)',
             'Wind speed (m/s)',
             'Global radiation (W/m2)'
-            'Wind_direction'
-            'Cloud_amount_binary',
-            'Precipitation_binary',
-            'hour_of_day',
-            'day_of_year',
-            'solar_elev_angle',
-            'sun_azimuth'
 ]
 
-NUMERICAL_VARS_WITH_NA = [
-    'Air temperature (degC)',
-    'Dew-point temperature (degC)'
-]
-
-WIND_DISCRETIZER_VAR = [
-    'Wind direction (deg)'
-]
+WIND_DISCRETE = ['Wind direction (deg)']
 
 NUM_TO_BINARY = [
     'Cloud amount (1/8)',
@@ -54,23 +45,21 @@ BINARY_BOUNDARIES = {
     'Precipitation intensity (mm/h)': 0
 }
 
-TEMPORAL_HOUR = [
-    'hour_of_day'
-]
+TEMPORAL_HOUR = 'hour'
 
-TEMPORAL_DAY = [
-    'day_of_year'
-]
+TEMPORAL_DAY = 'dayofyear'
 
-SOLAR_ANGLE_VAR = [
-    'solar_elev_angle'
-]
+SOLAR_ANGLE = 'solar_elev_angle'
 
-SUN_AZIMUTH_VAR = [
-    'sun_azimuth'
-]
+SUN_AZIMUTH = 'sun_azimuth'
+
 #variables that can be later dropped after used in calculation:
-# DROP_FEATURES =
+DROP_FEATURES = [
+    'Gust speed (m/s)',
+    'Snow depth (cm)',
+    'Horizontal visibility (m)',
+    'datetime_converted',
+]
 
 # think of more stuff here
 
