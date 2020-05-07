@@ -1,0 +1,10 @@
+--extra-index-url=${PIP_EXTRA_INDEX_URL}
+# is it really flask or should we use gunicorn?
+# api
+flask==1.0.2
+
+# schema validation
+marshmallow==2.17.0
+
+# Install from gemfury
+regression-model==0.1.0
