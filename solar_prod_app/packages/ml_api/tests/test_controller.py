@@ -21,8 +21,8 @@ def test_version_endpoint_returns_version(flask_test_client):
     #then
     assert response.status_code == 200
     response_json = json.loads(response.data)
-    assert resposne_json['model_version'] == _version
-    assert reponse_json['api_version']  == api_version
+    assert response_json['model_version'] == _version
+    assert response_json['api_version']  == api_version
 
 def test_prediction_endpoint_returns_prediction(flask_test_client):
     # Given
@@ -30,7 +30,7 @@ def test_prediction_endpoint_returns_prediction(flask_test_client):
     # This is important as it makes it harder for the test
     # data versions to get confused by not spreading it
     # across packages.
-    test_data = load_dataset(file_name=model_config.TESTING_DATA_FILE)
+    test_data = load_dataset(filename=model_config.TESTING_DATA_FILE)
     post_json = test_data[0:1].to_json(orient='records')
 
     # when

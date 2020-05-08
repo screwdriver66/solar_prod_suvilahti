@@ -70,8 +70,8 @@ class WindDiscretizer(BaseEstimator, TransformerMixin):
         return X
 
 class DiscretizerNumericalIntoBinary(BaseEstimator, TransformerMixin):
-    '''Discretization of cloud coverage and precipitation intensity into binary
-        The function takes a dictionary of variables as boundaries
+    '''Discretization of cloud coverage and precipitation intensity into
+        binary. The function takes a dictionary of variables as boundaries.
     '''
 
     def __init__(self, boundaries=None, variables=None):
@@ -92,38 +92,32 @@ class DiscretizerNumericalIntoBinary(BaseEstimator, TransformerMixin):
 
 class TemporalHour(BaseEstimator, TransformerMixin):
         #remove for loop in the transform
-        def __init__(self, variables=None):
-            if not isinstance(variables, list):
-                self.variables =  [variables]
-            else:
-                self.variables = variables
+        def __init__(self, variable=None, ref_feature=None):
+            self.variable = variable
+            self.ref_feature = ref_feature
+            #can make one temporal transformer for both issues
+            #dict with lambda?
 
         def fit(self, X, y=None):
             return self
 
         def transform(self, X):
             X = X.copy()
-            for feature in self.variables:
-                X[feature] = X.index.hour
-
+            X[self.variable] = pd.DatetimeIndex(pd.to_datetime(X[self.ref_feature])).hour
             return X
 
 class TemporalDayofYear(BaseEstimator, TransformerMixin):
         #remove for loop in the transform
-        def __init__(self, variables=None):
-            if not isinstance(variables, list):
-                self.variables =  [variables]
-            else:
-                self.variables = variables
+        def __init__(self, variable=None, ref_feature=None):
+            self.variable = variable
+            self.ref_feature = ref_feature
 
         def fit(self, X, y=None):
             return self
 
         def transform(self, X):
             X = X.copy()
-            for feature in self.variables:
-                X[feature] = X.index.dayofyear
-
+            X[self.variable] = pd.DatetimeIndex(pd.to_datetime(X[self.ref_feature])).dayofyear
             return X
 
 

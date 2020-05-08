@@ -7,11 +7,11 @@ from pathlib import Path
 from setuptools import find_packages, setup
 
 #package meta-data.
-NAME = 'solar_prod_suvilahti'
+NAME = 'regression_model'
 DESCRIPTION = 'Train and deploy regression model to predict Solar Energy Production'
 URL = 'https://github.com/screwdriver66/solar_prod_suvilahti'
 EMAIL = 'simo.uimonen@gmail.com'
-AURTHOR = 'Semen Uimonen'
+AUTHOR = 'Semen Uimonen'
 REQUIRES_PYTHON = '>=3.6.0'
 
 #package requirements

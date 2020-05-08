@@ -1,5 +1,5 @@
 --extra-index-url=${PIP_EXTRA_INDEX_URL}
-# is it really flask or should we use gunicorn?
+# or should we use gunicorn?
 # api
 flask==1.0.2
 
