@@ -1,4 +1,4 @@
-datetime_converted,Cloud amount (1/8),Pressure (msl) (hPa),Relative humidity (%),Precipitation intensity (mm/h),Snow depth (cm),Air temperature (degC),Dew-point temperature (degC),Horizontal visibility (m),Wind direction (deg),Gust speed (m/s),Wind speed (m/s),Value (kWh),Global radiation (W/m2)
+datetime_converted,CloudAmount,Pressure_msl_hpa,RelativeHumidity_percent,PrecipitationIntensity_mm_h,SnowDepth_cm,AirTemperature_degC,DewPointTemperature_degC,HorizontalVisibility_m,WindDirection,GustSpeed_m_s,WindSpeed_m_s,Energy_kWh,GlobalRadiation_W_m2
 2015-10-17 19:00:00+00:00,0.0,1020.3,94.0,0.0,-1.0,5.6,4.7,14520.0,251.0,5.4,4.2,0.0,-1.9
 2016-06-05 15:00:00+00:00,7.0,1017.6,33.0,0.0,-1.0,12.9,-2.9,40230.0,357.0,11.7,5.8,74.0,404.7
 2016-06-15 07:00:00+00:00,0.0,1011.2,41.0,0.0,-1.0,18.9,5.4,42910.0,89.0,5.3,3.4,164.0,653.8

@@ -14,50 +14,51 @@ DATASET_DIR = PACKAGE_ROOT / "datasets"
 #data
 TESTING_DATA_FILE = "test.csv"
 TRAINING_DATA_FILE = "train.csv"
-TARGET = "Value (kWh)"
+TARGET = "Energy_kWh"
 DATETIME_INDEX = "datetime_converted"
 #variables
 FEATURES = [
             'datetime_converted',
-            'Cloud amount (1/8)',
-            'Pressure (msl) (hPa)',
-            'Relative humidity (%)',
-            'Precipitation intensity (mm/h)',
-            'Snow depth (cm)',
-            'Air temperature (degC)',
-            'Dew-point temperature (degC)',
-            'Horizontal visibility (m)',
-            'Wind direction (deg)',
-            'Gust speed (m/s)',
-            'Wind speed (m/s)',
-            'Global radiation (W/m2)'
+            'CloudAmount',
+            'Pressure_msl_hpa',
+            'RelativeHumidity_percent',
+            'PrecipitationIntensity_mm_h',
+            'SnowDepth_cm',
+            'AirTemperature_degC',
+            'DewPointTemperature_degC',
+            'HorizontalVisibility_m',
+            'WindDirection',
+            'GustSpeed_m_s',
+            'WindSpeed_m_s',
+            'Energy_kWh',
+            'GlobalRadiation_W_m2'
 ]
 
-WIND_DISCRETE = ['Wind direction (deg)']
+WIND_DISCRETE = 'WindDirection'
 
 NUM_TO_BINARY = [
-    'Cloud amount (1/8)',
-    'Precipitation intensity (mm/h)'
+    'CloudAmount',
+    'PrecipitationIntensity_mm_h'
 ]
 
 BINARY_BOUNDARIES = {
-    'Cloud amount (1/8)': 5,
-    'Precipitation intensity (mm/h)': 0
+    'CloudAmount': 5,
+    'PrecipitationIntensity_mm_h': 0
 }
 
-TEMPORAL_HOUR = 'hour'
+TEMPORAL_HOUR = 'Hour'
 
-TEMPORAL_DAY = 'dayofyear'
+TEMPORAL_DAY = 'DayofYear'
 
-SOLAR_ANGLE = 'solar_elev_angle'
+SOLAR_ANGLE = 'SolarElevationAngle_deg'
 
-SUN_AZIMUTH = 'sun_azimuth'
+SUN_AZIMUTH = 'SunAzimuth_deg'
 
 #variables that can be later dropped after used in calculation:
 DROP_FEATURES = [
-    'Gust speed (m/s)',
-    'Snow depth (cm)',
-    'Horizontal visibility (m)',
+    'GustSpeed_m_s',
+    'SnowDepth_cm',
+    'HorizontalVisibility_m',
     'datetime_converted',
 ]
 
