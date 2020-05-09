@@ -1,13 +1,13 @@
-version: 2.1
+version: 2
 jobs:
-  build:
+  test_regression_model:
     working_directory: ~/project
     docker:
-      - image: alpine:3.7
+      - image: circleci/python:3.7.2  
     steps:
       - checkout
       - run:
-          name: The First Step
+          name: Runnning tests
           command: |
-            echo 'Hello World!'
-            echo 'This is the delivery pipeline'
+            virtualenv venv
+            . venv/bin/activate
