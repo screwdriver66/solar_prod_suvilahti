@@ -10,9 +10,8 @@ License][cc-by]. [![CC BY 4.0][cc-by-shield]][cc-by]
 
 - Solar energy production part of the data set was downloaded from https://www.helen.fi/en/solar-panels/solar-power-plants/suvilahti-solar-power-plant prior to its modification had no license document on the web page.
 
-The aforementioned datasets were used in model training and testing, located in 
+The aforementioned datasets were used in model training and testing, located in [datasets](/packages/regression_model/regression_model/datasets/)
 
->/packages/regression_model/regression_model/datasets/
 
 
 [cc-by]: http://creativecommons.org/licenses/by/4.0/
