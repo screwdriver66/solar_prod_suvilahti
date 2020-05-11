@@ -51,11 +51,8 @@ def calc_alpha_s_for_df(N, time, lon=longtitude, delta_GMT=3, phi=latitude):
 
 class WindDiscretizer(BaseEstimator, TransformerMixin):
     '''Discretization of Wind'''
-    def __init__(self,  variables=None):
-        if not isinstance(variables, list):
-            self.variables = [variables]
-        else:
-            self.variables = variables
+    def __init__(self,  variable=None):
+        self.variable = variable
 
     def fit(self, X, y=None):
         return self
@@ -64,9 +61,8 @@ class WindDiscretizer(BaseEstimator, TransformerMixin):
         X = X.copy()
         buckets = np.arange(11.25, 372, 22.5)
         labels = np.arange(17)
-        for feature in self.variables:
-            X[feature][(X[feature]>=0)&(X[feature]<11.25)] = X[feature].apply(lambda x:x+360)
-            X[feature]=labels[np.digitize(X[feature], buckets)]
+        X[self.variable].loc[(X[self.variable]>=0)&(X[self.variable]<11.25)] = X[self.variable].loc[(X[self.variable]>=0)&(X[self.variable]<11.25)].apply(lambda x:x+360)
+        X[self.variable]=labels[np.digitize(X[self.variable], buckets)]
         return X
 
 class DiscretizerNumericalIntoBinary(BaseEstimator, TransformerMixin):
@@ -133,7 +129,7 @@ class SolarElevAngle(BaseEstimator, TransformerMixin):
 
         def transform(self, X):
             X = X.copy()
-            X[self.var_name] = X.apply(lambda x: calc_alpha_s_for_df(N=x[self.day],time=x[self.day]),axis=1)
+            X[self.var_name] = X.apply(lambda x: calc_alpha_s_for_df(N=x[self.day],time=x[self.hour]),axis=1)
 
             return X
 
