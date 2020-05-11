@@ -8,7 +8,7 @@ Documentation
 - Weather observation part of the data set, downloaded from https://en.ilmatieteenlaitos.fi/open-data, prior to its modification is under [Creative Commons Attribution 4.0 International 
 License][cc-by]. [![CC BY 4.0][cc-by-shield]][cc-by]
 
-- Solar energy production part of the data set was downloaded from https://www.helen.fi/en/solar-panels/solar-power-plants/suvilahti-solar-power-plant prior to its modification. 
+- Solar energy production part of the data set was downloaded from https://www.helen.fi/en/solar-panels/solar-power-plants/suvilahti-solar-power-plant prior to its modification had no license document on the web page.
 
 
 [cc-by]: http://creativecommons.org/licenses/by/4.0/
