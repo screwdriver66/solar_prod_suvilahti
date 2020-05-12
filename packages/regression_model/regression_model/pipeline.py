@@ -13,7 +13,7 @@ _logger = logging.getLogger(__name__)
 
 energy_pipe = Pipeline(
     [
-        ('wind_disc', pp.WindDiscretizer(variable=config.WIND_DISCRETE)),
+        ('wind_disc', pp.WindDiscretizer(variables=config.WIND_DISCRETE)),
         ('num_to_binary', pp.DiscretizerNumericalIntoBinary(boundaries=config.BINARY_BOUNDARIES, variables=config.NUM_TO_BINARY)),
         ('temporal_hour', pp.TemporalHour(variable=config.TEMPORAL_HOUR, ref_feature=config.DATETIME_INDEX)),
         ('temporal_dayofyear', pp.TemporalDayofYear(variable=config.TEMPORAL_DAY, ref_feature=config.DATETIME_INDEX)),

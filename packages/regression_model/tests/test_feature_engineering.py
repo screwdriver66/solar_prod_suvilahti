@@ -10,13 +10,15 @@ from regression_model.config import config
 # 1. Test wind discretizer
 def test_WindDiscretizer():
     data = dm.load_dataset(filename=config.TRAINING_DATA_FILE)
-    ct = pp.WindDiscretizer(variable=config.WIND_DISCRETE)
+    ct = pp.WindDiscretizer(variables=config.WIND_DISCRETE)
     data_t = ct.transform(data)
 
     assert len(data_t[config.WIND_DISCRETE].unique())==16
     assert data_t[config.WIND_DISCRETE].min()==1
     assert data_t[config.WIND_DISCRETE].max()==16
+    assert len(data_t) == len(data)
     assert type(data_t) == pd.core.frame.DataFrame
+    assert data_t[config.WIND_DISCRETE] is not None
 
 # 2. test num to binary
 #   2.1 for var 1
@@ -111,4 +113,3 @@ def test_DropFeatures():
     assert len(data_t.columns) == len(config.FEATURES)
     assert config.FEATURES not in data_t.columns.to_list()
     assert type(data_t) == pd.core.frame.DataFrame
-# 8. test scaler
