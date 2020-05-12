@@ -32,8 +32,6 @@ def test_DiscretizerNumericalIntoBinary():
         assert len(data_t[var].unique()) == 2
         assert data_t[var].min() == 0
         assert data_t[var].max() == 1
-        assert isinstance(data_t[var].max(), np.int32)
-        assert isinstance(data_t[var].min(), np.int32)
         assert type(data_t) == pd.core.frame.DataFrame
 
 # 3. test temporal hour
@@ -96,7 +94,27 @@ def test_SunAzimuth():
     assert data_t[var].min() >= -180
     assert type(data_t) == pd.core.frame.DataFrame
 
-# 7. test drop features
+# 7. test theoretical maximum solar radiation transformer
+def test_TheoreticalIrradiance():
+    data = dm.load_dataset(filename=config.TRAINING_DATA_FILE)
+    data = dm.load_dataset(filename=config.TRAINING_DATA_FILE)
+    ct0 = pp.TemporalHour(variable=config.TEMPORAL_HOUR, ref_feature=config.DATETIME_INDEX)
+    ct1 = pp.TemporalDayofYear(variable=config.TEMPORAL_DAY, ref_feature=config.DATETIME_INDEX)
+    ct2 = pp.SolarElevAngle(var_name=config.SOLAR_ANGLE, day=config.TEMPORAL_DAY, hour=config.TEMPORAL_HOUR)
+    ct3 = pp.SunAzimuth(var_name=config.SUN_AZIMUTH, day=config.TEMPORAL_DAY, hour=config.TEMPORAL_HOUR)
+    ct4 = pp.TheoreticalRadiation(var_name=config.THEOR_SRAD, day=config.TEMPORAL_DAY, hour=config.TEMPORAL_HOUR)
+    data_t = ct0.transform(data)
+    data_t = ct1.transform(data_t)
+    data_t = ct2.transform(data_t)
+    data_t = ct3.transform(data_t)
+    data_t = ct4.transform(data_t)
+    var = config.THEOR_SRAD
+
+    assert data_t[var] is not None
+    assert len(data) == len(data_t[var])
+    assert type(data_t) == pd.core.frame.DataFrame
+
+# 8. test drop features
 def test_DropFeatures():
     data = dm.load_dataset(filename=config.TRAINING_DATA_FILE)
     ct0 = pp.TemporalHour(variable=config.TEMPORAL_HOUR, ref_feature=config.DATETIME_INDEX)

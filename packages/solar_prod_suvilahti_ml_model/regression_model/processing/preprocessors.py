@@ -3,23 +3,8 @@ import pandas as pd
 from sklearn.base import BaseEstimator, TransformerMixin
 
 from regression_model.processing.errors import InvalidModelInputError
-from regression_model.processing.azimuth_one_script import *
-# PUT THESE IN ANOTHER SCRIPT
-longtitude = 24.9693
-latitude = 60.1867
-delta_GMT = 3
-def calc_sun_azimuth_for_df(N, time, lon=longtitude, delta_GMT=3, phi=latitude):
-    delta = calc_delta(N)
-    omega = calc_omega(N, lon, delta_GMT, time)
-    alpha_s = calc_alpha_s(phi, delta, omega)
-    gamma_s = calc_gamma_s(alpha_s, phi, delta, omega)
-    return gamma_s
+from regression_model.processing.solar_calculation_functions import *
 
-def calc_alpha_s_for_df(N, time, lon=longtitude, delta_GMT=3, phi=latitude):
-    delta = calc_delta(N)
-    omega = calc_omega(N, lon, delta_GMT, time)
-    alpha_s = calc_alpha_s(phi, delta, omega)
-    return alpha_s
 ###
 
 # List of all preprocessor steps:
@@ -27,17 +12,13 @@ def calc_alpha_s_for_df(N, time, lon=longtitude, delta_GMT=3, phi=latitude):
 #    for a period.
 # 2. Dropping NA in the rest of the data.
 # 3. Target variable 2x outliers fixed
-#maybe 1, 2 and 3 should be done outside of the pipeline
-# ----- DONE -----
-# the file with first 3 done is ../datasets/pipeline_df.csv
+# 1, 2 and 3 are done outside of the pipeline
+# the file with first 3 are done in the notebooks
 
 # 4. Discretization
 #   4.1 Wind Direction into bins and bin-number-categories
 #   4.2 Precipitation intensity -> binary 0,1
 #   4.3 Cloud amount -> binary <5 == 0, >=5 ==1
-
-# column transformers on these?
-# ----- DONE -----
 
 # 5. Additional features
 #   5.1 Hour of the day
@@ -91,7 +72,6 @@ class DiscretizerNumericalIntoBinary(BaseEstimator, TransformerMixin):
         return X
 
 class TemporalHour(BaseEstimator, TransformerMixin):
-        #remove for loop in the transform
         def __init__(self, variable=None, ref_feature=None):
             self.variable = variable
             self.ref_feature = ref_feature
@@ -107,7 +87,6 @@ class TemporalHour(BaseEstimator, TransformerMixin):
             return X
 
 class TemporalDayofYear(BaseEstimator, TransformerMixin):
-        #remove for loop in the transform
         def __init__(self, variable=None, ref_feature=None):
             self.variable = variable
             self.ref_feature = ref_feature
@@ -120,9 +99,7 @@ class TemporalDayofYear(BaseEstimator, TransformerMixin):
             X[self.variable] = pd.DatetimeIndex(pd.to_datetime(X[self.ref_feature])).dayofyear
             return X
 
-
 class SolarElevAngle(BaseEstimator, TransformerMixin):
-
         def __init__(self, var_name=None, day=None, hour=None):
             self.var_name = var_name
             self.day = day
@@ -138,7 +115,6 @@ class SolarElevAngle(BaseEstimator, TransformerMixin):
             return X
 
 class SunAzimuth(BaseEstimator, TransformerMixin):
-
         def __init__(self, var_name=None, day=None, hour=None):
             self.var_name = var_name
             self.day = day
@@ -149,7 +125,22 @@ class SunAzimuth(BaseEstimator, TransformerMixin):
 
         def transform(self, X):
             X = X.copy()
-            X[self.var_name] = X.apply(lambda x: calc_sun_azimuth_for_df(N=x[self.day],time=x[self.day]),axis=1)
+            X[self.var_name] = X.apply(lambda x: calc_sun_azimuth_for_df(N=x[self.day],time=x[self.hour]),axis=1)
+
+            return X
+
+class TheoreticalRadiation(BaseEstimator, TransformerMixin):
+        def __init__(self, var_name=None, day=None, hour=None):
+            self.var_name = var_name
+            self.day = day
+            self.hour = hour
+
+        def fit(self, X, y=None):
+            return self
+
+        def transform(self, X):
+            X = X.copy()
+            X[self.var_name] = X.apply(lambda x: calc_glob_irrad(N=x[self.day],time=x[self.hour]),axis=1)
 
             return X
 

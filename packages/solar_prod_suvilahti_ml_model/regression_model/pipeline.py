@@ -19,6 +19,7 @@ energy_pipe = Pipeline(
         ('temporal_dayofyear', pp.TemporalDayofYear(variable=config.TEMPORAL_DAY, ref_feature=config.DATETIME_INDEX)),
         ('solar_angle', pp.SolarElevAngle(var_name=config.SOLAR_ANGLE, day=config.TEMPORAL_DAY, hour=config.TEMPORAL_HOUR)),
         ('sun_azimuth', pp.SunAzimuth(var_name=config.SUN_AZIMUTH, day=config.TEMPORAL_DAY, hour=config.TEMPORAL_HOUR)),
+        ('theor_solar_radiation', pp.TheoreticalRadiation(var_name=config.THEOR_SRAD, day=config.TEMPORAL_DAY, hour=config.TEMPORAL_HOUR)),
         ('drop_features', pp.DropUnnecessaryFeatures(variables_to_drop=config.DROP_FEATURES)),
         ("scaler", StandardScaler()),
         ("random_forest", RandomForestRegressor(n_estimators=2, max_depth=2, random_state=42))

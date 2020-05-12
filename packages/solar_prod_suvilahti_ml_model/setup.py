@@ -7,8 +7,8 @@ from pathlib import Path
 from setuptools import find_packages, setup
 
 #package meta-data.
-NAME = 'regression_model'
-DESCRIPTION = 'Train and deploy regression model to predict Solar Energy Production'
+NAME = 'solar_prod_suvilahti_ml_model'
+DESCRIPTION = 'Study project. Train and deploy regression model to predict Solar Energy Production'
 URL = 'https://github.com/screwdriver66/solar_prod_suvilahti'
 EMAIL = 'simo.uimonen@gmail.com'
 AUTHOR = 'Semen Uimonen'
@@ -30,7 +30,7 @@ except FileNotFoundError:
 
 # load the package __version__.py module as a dictionary
 ROOT_DIR = Path(__file__).resolve().parent
-PACKAGE_DIR = ROOT_DIR / NAME
+PACKAGE_DIR = ROOT_DIR / 'regression_model'
 about = {}
 with open(PACKAGE_DIR / 'VERSION') as f:
     _version = f.read().strip()
@@ -51,10 +51,10 @@ setup(
     install_requires=list_reqs(),
     extras_require={},
     include_package_data=True,
-    license='MIT',
+    license='GPLv3',
     classifiers=[
-        'Development Status :: 1 - Planning',
-        'License :: OSI Approved :: MIT License',
+        'Development Status :: 2 - Pre-Alpha',
+        'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.6',

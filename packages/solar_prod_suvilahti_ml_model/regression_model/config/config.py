@@ -54,6 +54,8 @@ SOLAR_ANGLE = 'SolarElevationAngle_deg'
 
 SUN_AZIMUTH = 'SunAzimuth_deg'
 
+THEOR_SRAD = 'TheoreticalSolarRadiation'
+
 #variables that can be later dropped after used in calculation:
 DROP_FEATURES = [
     'GustSpeed_m_s',

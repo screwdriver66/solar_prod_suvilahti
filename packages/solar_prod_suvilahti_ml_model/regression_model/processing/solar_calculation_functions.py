@@ -10,6 +10,19 @@ delta_GMT = 0
 gamma = 0
 beta=45
 
+def calc_sun_azimuth_for_df(N, time, lon=longtitude, delta_GMT=3, phi=latitude):
+    delta = calc_delta(N)
+    omega = calc_omega(N, lon, delta_GMT, time)
+    alpha_s = calc_alpha_s(phi, delta, omega)
+    gamma_s = calc_gamma_s(alpha_s, phi, delta, omega)
+    return gamma_s
+
+def calc_alpha_s_for_df(N, time, lon=longtitude, delta_GMT=3, phi=latitude):
+    delta = calc_delta(N)
+    omega = calc_omega(N, lon, delta_GMT, time)
+    alpha_s = calc_alpha_s(phi, delta, omega)
+    return alpha_s
+
 def calc_sol_time(N, lon, delta_GMT, time):
     sol_time_minus_st_time = calc_sol_time_minus_st_time(N, lon, delta_GMT)
     sol_time = time+sol_time_minus_st_time
@@ -133,6 +146,9 @@ def calc_glob_irrad(N,time,lon=longtitude,delta_GMT=0,phi=latitude):
             G_beam = calc_direct_irrad(G_on, alpha_s, cos_theta_i, T_L=2)
             T_rd = calc_t_rd(T_L=2)
             G_d = calc_diffuse_irrad(T_rd, alpha_s, G_on, beta)
-
             G_glob = G_beam + G_d
-            return G_glob
+        else:
+            G_glob = 0
+    else:
+        G_glob = 0
+    return G_glob
