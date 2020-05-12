@@ -31,7 +31,7 @@ def predict():
 
         # Step 2: Validate the input using marshmallow schema
         input_data, errors = validate_inputs(input_data=json_data)
-        # input_data = json_data
+        
         # Step 3: Model prediction
         result = make_prediction(input_data=input_data)
 

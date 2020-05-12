@@ -12,8 +12,8 @@ jobs:
             virtualenv venv
             . venv/bin/activate
             pip install --upgrade pip
-            pip install -r packages/regression_model/requirements.txt
-            py.test -vv packages/regression_model/tests
+            pip install -r packages/solar_prod_suvilahti_ml_model/requirements.txt
+            py.test -vv packages/regression_model/tests #!!!!!!edit this to a different test
 
   test_ml_api:
     working_directory: ~/project
@@ -36,13 +36,13 @@ jobs:
       - image: circleci/python:3.7.2
     steps:
       - checkout
-      - run: 
+      - run:
           name: Setup env
           command: |
             virtualenv venv
             . venv/bin/activate
             pip install -r packages/regression_model/requirements.txt
-      - run: 
+      - run:
           name: Publish model
           command: |
             . venv/bin/activate

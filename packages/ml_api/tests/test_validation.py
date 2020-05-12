@@ -1,7 +1,6 @@
 import json
-
-from regression_model.config import config
-from regression_model.processing.data_management import load_dataset
+from api import config
+from api.data_management import load_dataset
 
 def test_prediction_endpoint_validation_200(flask_test_client):
     # Given
@@ -19,7 +18,3 @@ def test_prediction_endpoint_validation_200(flask_test_client):
     #then
     assert response.status_code == 200
     response_json = json.loads(response.data)
-
-    # Check correct number of errors removed
-    # assert len(response_json.get('predictions')) + len(
-    #     response_json.get('errors')) == len(test_data)

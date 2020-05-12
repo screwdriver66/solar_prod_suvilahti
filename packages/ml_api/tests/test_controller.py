@@ -1,6 +1,7 @@
 from regression_model.config import config as model_config
-from regression_model.processing.data_management import load_dataset
+from api.data_management import load_dataset
 from regression_model import __version__ as _version
+from api import config
 
 import json
 import math
@@ -30,7 +31,7 @@ def test_prediction_endpoint_returns_prediction(flask_test_client):
     # This is important as it makes it harder for the test
     # data versions to get confused by not spreading it
     # across packages.
-    test_data = load_dataset(filename=model_config.TESTING_DATA_FILE)
+    test_data = load_dataset(filename=config.TESTING_DATA_FILE)
     post_json = test_data[0:1].to_json(orient='records')
 
     # when

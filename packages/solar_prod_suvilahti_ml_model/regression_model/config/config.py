@@ -16,6 +16,7 @@ TESTING_DATA_FILE = "test.csv"
 TRAINING_DATA_FILE = "train.csv"
 TARGET = "Energy_kWh"
 DATETIME_INDEX = "datetime_converted"
+GLOBAL_RADIATION = 'GlobalRadiation_W_m2'
 #variables
 FEATURES = [
             'datetime_converted',
