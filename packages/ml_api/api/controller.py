@@ -10,6 +10,7 @@ from api.validation import validate_inputs
 from api import __version__ as api_version
 
 import numpy as np
+import pandas as pd
 
 _logger = get_logger(logger_name=__name__)
 
@@ -53,11 +54,13 @@ def predict():
 @prediction_app.route('/bar_chart')
 def bar_chart():
     # html = "<h1> Solar Power Production ML App for Suvilahti PV Plant operated by Helen.</h1>"
-    legend = 'Hourly Data'
+    legend = 'Energy production [kWh]'
     # labels = ["January", "February", "March", "April", "May", "June", "July", "August"]
     forecast = get_forecast(place=reg_config.PREDICTION_PLACE)
     result = make_prediction(input_data=forecast)
     predictions = result.get('predictions').tolist()
-    values = predictions
-    labels = np.arange(len(values))
+    values = np.around(predictions,2)
+    # TIME IS IN UTC
+    labels = pd.DatetimeIndex(pd.to_datetime(forecast[reg_config.DATETIME_INDEX])).time
+
     return render_template('bar_chart.html', values=values, labels=labels, legend=legend)
