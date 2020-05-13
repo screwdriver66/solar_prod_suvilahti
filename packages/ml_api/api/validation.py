@@ -11,6 +11,7 @@ class InvalidInputError(Exception):
 
 class WeatherDataRequestSchema(Schema):
     #list vars here
+    # datetime_converted = fields.Int()
     datetime_converted = fields.Str()
     CloudAmount = fields.Integer()
     Pressure_msl_hpa = fields.Float()
@@ -39,7 +40,7 @@ def _filter_error_rows(errors: dict,
 
     return validated_input
 
-def validate_inputs(input_data):
+def validate_inputs(input_data, csv_origin=True):
     '''Check prediction inputs against the schema'''
 
     # set many=True to allow passing in a list

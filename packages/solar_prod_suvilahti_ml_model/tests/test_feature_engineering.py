@@ -121,13 +121,13 @@ def test_DropFeatures():
     ct1 = pp.TemporalDayofYear(variable=config.TEMPORAL_DAY, ref_feature=config.DATETIME_INDEX)
     ct2 = pp.SolarElevAngle(var_name=config.SOLAR_ANGLE, day=config.TEMPORAL_DAY, hour=config.TEMPORAL_HOUR)
     ct3 = pp.SunAzimuth(var_name=config.SUN_AZIMUTH, day=config.TEMPORAL_DAY, hour=config.TEMPORAL_HOUR)
-    ct4 = pp.DropUnnecessaryFeatures(variables_to_drop=config.DROP_FEATURES)
+    ct4 = pp.TheoreticalRadiation(var_name=config.THEOR_SRAD, day=config.TEMPORAL_DAY, hour=config.TEMPORAL_HOUR)
+    ct5 = pp.DropUnnecessaryFeatures(variables_to_drop=config.DROP_FEATURES)
     data_t = ct0.transform(data)
     data_t = ct1.transform(data_t)
     data_t = ct2.transform(data_t)
     data_t = ct3.transform(data_t)
     data_t = ct4.transform(data_t)
-
-    assert len(data_t.columns) == len(config.FEATURES)
-    assert config.FEATURES not in data_t.columns.to_list()
+    data_t = ct5.transform(data_t)
+    assert config.DROP_FEATURES not in data_t.columns.to_list()
     assert type(data_t) == pd.core.frame.DataFrame

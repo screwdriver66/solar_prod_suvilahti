@@ -1,5 +1,5 @@
 import logging
-from solar_prod_suvilahti_ml_model.regression_model import config as regr_config
+from regression_model import config as regr_config
 from logging.handlers import TimedRotatingFileHandler
 import pathlib
 import os
@@ -14,10 +14,11 @@ LOG_DIR = PACKAGE_ROOT / 'logs'
 LOG_DIR.mkdir(exist_ok=True)
 LOG_FILE = LOG_DIR / 'ml_api.log'
 TESTING_DATA_FILE = 'test.csv'
-DATETIME_INDEX = "datetime_converted"
-PREDICTION_PLACE = 'Kumpula'
-RADIATION_ACCUMULATION = 'radiation_global_accumulation'
-GLOBAL_RADIATION = regr_config.GLOBAL_RADIATION
+# DATETIME_INDEX = "datetime_converted"
+# PREDICTION_PLACE = 'Kumpula'
+# RADIATION_ACCUMULATION = 'radiation_global_accumulation'
+# GLOBAL_RADIATION = regr_config.GLOBAL_RADIATION
+# DATETIME_INDEX = regr_config.DATETIME_INDEX
 
 def get_console_handler():
     console_handler = logging.StreamHandler(sys.stdout)
