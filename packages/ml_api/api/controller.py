@@ -1,10 +1,15 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, render_template
 from regression_model.predict import make_prediction
 from regression_model import __version__ as _version
+from regression_model.processing.get_weather_forecast import get_forecast
+from regression_model.config import config as reg_config
+
 
 from api.config import get_logger
 from api.validation import validate_inputs
 from api import __version__ as api_version
+
+import numpy as np
 
 _logger = get_logger(logger_name=__name__)
 
@@ -31,7 +36,7 @@ def predict():
 
         # Step 2: Validate the input using marshmallow schema
         input_data, errors = validate_inputs(input_data=json_data)
-        
+
         # Step 3: Model prediction
         result = make_prediction(input_data=input_data)
 
@@ -43,3 +48,16 @@ def predict():
         return jsonify({'predictions': predictions,
                         'version': version,
                         'errors': errors})
+
+
+@prediction_app.route('/bar_chart')
+def bar_chart():
+    # html = "<h1> Solar Power Production ML App for Suvilahti PV Plant operated by Helen.</h1>"
+    legend = 'Hourly Data'
+    # labels = ["January", "February", "March", "April", "May", "June", "July", "August"]
+    forecast = get_forecast(place=reg_config.PREDICTION_PLACE)
+    result = make_prediction(input_data=forecast)
+    predictions = result.get('predictions').tolist()
+    values = predictions
+    labels = np.arange(len(values))
+    return render_template('bar_chart.html', values=values, labels=labels, legend=legend)
