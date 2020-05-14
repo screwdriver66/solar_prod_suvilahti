@@ -18,7 +18,7 @@ The goal of the project was to choose a dataset that was not yet popular in tuto
 
 
 ## Jupyter notebooks
-------------------------
+
 - Data gathering
 - Data analysis
 - Feature engineering
