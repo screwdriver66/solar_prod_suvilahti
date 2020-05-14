@@ -3,7 +3,6 @@
 This is an end-to-end machine learning project that provides hourly prediction of produced energy at Suvilahti PV plant for the upcoming 36 hours. Prediction values are obtained through a regression model that utilizes the Finnish Meteorological Institute (FMI) open data and weather API as input parameters.
 
 ## Description
----------------------
 
 The goal of the project was to choose a dataset that was not yet popular in tutorials, create a ML model and to deploy it in production. The processes covered in the project can be subdivided into the following steps:
 
@@ -31,7 +30,7 @@ add links here!!!
 
 
 ## Licenses
---------------------------------
+
 - The source code is under the GNU GPL v3 license [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 - Weather observation part of the data set, downloaded from https://en.ilmatieteenlaitos.fi/open-data, prior to its modification is under [Creative Commons Attribution 4.0 International
