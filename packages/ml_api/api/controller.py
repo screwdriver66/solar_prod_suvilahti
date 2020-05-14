@@ -4,7 +4,6 @@ from regression_model import __version__ as _version
 from regression_model.processing.get_weather_forecast import get_forecast
 from regression_model.config import config as reg_config
 
-
 from api.config import get_logger
 from api.validation import validate_inputs
 from api import __version__ as api_version
@@ -53,14 +52,11 @@ def predict():
 
 @prediction_app.route('/bar_chart')
 def bar_chart():
-    # html = "<h1> Solar Power Production ML App for Suvilahti PV Plant operated by Helen.</h1>"
-    legend = 'Energy production [kWh]'
-    # labels = ["January", "February", "March", "April", "May", "June", "July", "August"]
+    legend = 'Predicted energy production [kWh]'
     forecast = get_forecast(place=reg_config.PREDICTION_PLACE)
     result = make_prediction(input_data=forecast)
     predictions = result.get('predictions').tolist()
     values = np.around(predictions,2)
-    # TIME IS IN UTC
-    labels = pd.DatetimeIndex(pd.to_datetime(forecast[reg_config.DATETIME_INDEX])).time
+    labels = pd.DatetimeIndex(pd.to_datetime(forecast[reg_config.DATETIME_INDEX])).tz_convert('Europe/Helsinki').time
 
     return render_template('bar_chart.html', values=values, labels=labels, legend=legend)

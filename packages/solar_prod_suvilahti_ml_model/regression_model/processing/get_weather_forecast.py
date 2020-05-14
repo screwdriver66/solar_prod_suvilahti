@@ -19,8 +19,6 @@ def get_forecast(place):
     df = df.loc[1:]
     df =  df.drop(columns=config.FORECAST_TO_DROP)
     df.columns = config.FEATURES
-    # df[config.TARGET] = 0
-    # df[config.DATETIME_INDEX] = pd.to_datetime(df[config.DATETIME_INDEX])
     # to go along with WeatherDataRequestSchema of the API we change
     # 'datetime_converted' to a string
     df[config.DATETIME_INDEX] = df[config.DATETIME_INDEX].astype(str)

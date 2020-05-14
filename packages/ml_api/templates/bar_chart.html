@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <link rel="stylesheet" href="/static/styles.css?version=39"/>
+  <link rel="stylesheet" href="/static/styles.css?version=145"/>
   <title>PV Energy Production Prediction</title>
   <!-- import plugin script -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js'></script>
@@ -10,11 +10,31 @@
 
 <body>
 
-  <div class='header'><h2>Solar Production Suvilahti</h2></div>
-  <!-- bar chart canvas element -->
+  <div class='header'><h1>Predicting energy production of a PV plant in Suvilahti</h1><h2>A Machine Learning-based approach</h2></div>
 
+  <div id='text_box_pre_chart'>
+    <a href="http://www.helen.fi">Helen Energia</a>, finnish electricity generating company offers to rent a
+    solar panel at several PV power plants, for example Suvilahti. Consumers can select a number of panels and
+    connect them to their <a href="https://www.helen.fi/en/electricity/electricity-products-and-prices">electricity contract</a>
+    to become prosumers. This supports local renewable generation and helps to reduce CO2 emission.
+    <br>
+    <br>
+    Helen provides a live video streaming service that captures the current PV plant production, as well as the production data
+    for previous hours in the chart on their
+    <a href="https://www.helen.fi/en/solar-panels/solar-power-plants/suvilahti-solar-power-plant.">designated webpage</a>.
+
+  </div>
+  <!-- bar chart canvas element -->
   <div id="CanvasDiv"><canvas id="BarChart"></canvas></div>
-  <p id="caption">Prediction values of energy production [kWh] in Suvilahti PV plant for the next 36 hours</p>
+
+  <p id="caption">Prediction values of energy production for the next 36 hours [kWh]</p>
+
+  <!-- FOOTER -->
+  <div id="footer">
+    <p id='author'>Semen Uimonen - 2020</p>
+    <p id='email'>simo.uimonen@gmail.com</p>
+    <a href="https://www.linkedin.com/in/semenuimonen/" id="linkedin" class="button">www.linkedin.com/in/semenuimonen/</a>
+  </div>
 
   <script>
     // Global parameters:
