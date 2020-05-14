@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <link rel="stylesheet" href="/static/styles.css?version=145"/>
+  <link rel="stylesheet" href="/static/styles.css?version=186"/>
   <title>PV Energy Production Prediction</title>
   <!-- import plugin script -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js'></script>
@@ -10,25 +10,54 @@
 
 <body>
 
-  <div class='header'><h1>Predicting energy production of a PV plant in Suvilahti</h1><h2>A Machine Learning-based approach</h2></div>
+  <div class='header'>
+  <div id=header_button_box>
+    <a href="https://github.com/screwdriver66/solar_prod_suvilahti" id="API" class="button">API</a>
+    <a href="https://github.com/screwdriver66/solar_prod_suvilahti" id="documentation" class="button">Documentation</a>
+    <a href="https://github.com/screwdriver66/solar_prod_suvilahti" id="GITHUB" class="button">Github</a>
+  </div>
+  </div>
 
   <div id='text_box_pre_chart'>
-    <a href="http://www.helen.fi">Helen Energia</a>, finnish electricity generating company offers to rent a
-    solar panel at several PV power plants, for example Suvilahti. Consumers can select a number of panels and
+    <h1>Predicting energy production of a PV plant in Suvilahti</h1><h2>A Machine Learning-based approach</h2>
+
+    <h3>Introduction</h3>
+    <a href="http://www.helen.fi">Helen Oy</a> is a finnish electricity generating company who offers to rent
+    solar panels at several PV power plants, for example Suvilahti. Consumers can select a number of panels and
     connect them to their <a href="https://www.helen.fi/en/electricity/electricity-products-and-prices">electricity contract</a>
-    to become prosumers. This supports local renewable generation and helps to reduce CO2 emission.
+    and become prosumers. This supports local renewable generation and helps to reduce CO2 emission.
+
+    Helen provides a live video streaming service that captures the current PV plant production, as well as past production data on their
+    <a href="https://www.helen.fi/en/solar-panels/solar-power-plants/suvilahti-solar-power-plant">designated webpage</a>.
     <br>
-    <br>
-    Helen provides a live video streaming service that captures the current PV plant production, as well as the production data
-    for previous hours in the chart on their
-    <a href="https://www.helen.fi/en/solar-panels/solar-power-plants/suvilahti-solar-power-plant.">designated webpage</a>.
+
+    <h3>Description</h3>
+    This project provides hourly prediction of produced energy at Suvilahti PV plant for the upcoming 36 hours.
+    Prediction values are obtained through a regression model that utilizes the
+    <a href="https://en.ilmatieteenlaitos.fi/">Finnish Meteorological Institute (FMI)</a>
+    <a href="https://en.ilmatieteenlaitos.fi/open-data">open data</a>
+     and weather API as input parameters.
+
+     <br><br>
+     Figure below is a bar plot of predicted hourly values of energy production in kWh.
+     These values are obtainable through the API. Perhaps later they will also become downloadable in a .csv file.
+     Visit the <a href="https://github.com/screwdriver66/solar_prod_suvilahti">Github</a> repository
+     for more detailed information about the project.
 
   </div>
   <!-- bar chart canvas element -->
   <div id="CanvasDiv"><canvas id="BarChart"></canvas></div>
 
-  <p id="caption">Prediction values of energy production for the next 36 hours [kWh]</p>
-
+  <p id="caption">Prediction values of energy production [kWh]</p>
+  <div id='after_text'>This application is meant to be a portfolio project that helps me to transition from academia to industry.
+    The goal was to choose a dataset that was not yet popular in the tutorials, create a ML model and to deploy it in production.
+    <br>
+    <br>
+    The <a href="https://github.com/screwdriver66/solar_prod_suvilahti">Github</a> repository contains the source code of the API,
+    python package with ML pipeline, CI/CD configuration, tests, tox config, as well as jupyter notebooks produced during exploratory
+    data analysis, feature engineering, model building and hyperparameter tuning.
+    If you would like to get in touch with me, please use the contact information at the bottom of the page.
+  </div>
   <!-- FOOTER -->
   <div id="footer">
     <p id='author'>Semen Uimonen - 2020</p>
