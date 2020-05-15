@@ -49,10 +49,7 @@ Regression model documentation consists of:
 - Data gathering [[source]()]
 - Data analysis [[source]()]
 - Feature engineering [[source]()]
-- Feature selection [[source]()]
 - Model building [[source]()]
-- Model deployment [[source]()]
-
 
 ## Licenses
 
