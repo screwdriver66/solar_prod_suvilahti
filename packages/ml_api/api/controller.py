@@ -50,13 +50,14 @@ def predict():
                         'errors': errors})
 
 
-@prediction_app.route('/bar_chart')
+@prediction_app.route('/bar_chart', methods=['GET'])
 def bar_chart():
-    legend = 'Predicted energy production [kWh]'
-    forecast = get_forecast(place=reg_config.PREDICTION_PLACE)
-    result = make_prediction(input_data=forecast)
-    predictions = result.get('predictions').tolist()
-    values = np.around(predictions,2)
-    labels = pd.DatetimeIndex(pd.to_datetime(forecast[reg_config.DATETIME_INDEX])).tz_convert('Europe/Helsinki').time
+    if request.method == 'GET':
+        legend = 'Predicted energy production [kWh]'
+        forecast = get_forecast(place=reg_config.PREDICTION_PLACE)
+        result = make_prediction(input_data=forecast)
+        predictions = result.get('predictions').tolist()
+        values = np.around(predictions,2)
+        labels = pd.DatetimeIndex(pd.to_datetime(forecast[reg_config.DATETIME_INDEX])).tz_convert('Europe/Helsinki').time
 
-    return render_template('bar_chart.html', values=values, labels=labels, legend=legend)
+        return render_template('bar_chart.html', values=values, labels=labels, legend=legend)
