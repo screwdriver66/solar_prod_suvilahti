@@ -3,7 +3,6 @@
 This is an end-to-end machine learning project that provides hourly prediction of produced energy at Suvilahti PV plant for the upcoming 36 hours. Prediction values are obtained through a regression model that utilizes the Finnish Meteorological Institute (FMI) open data and weather API as input parameters.
 
 ## Description
----------------------
 
 The goal of the project was to choose a dataset that was not yet popular in tutorials, create a ML model and to deploy it in production. The processes covered in the project can be subdivided into the following steps:
 
@@ -15,11 +14,10 @@ The goal of the project was to choose a dataset that was not yet popular in tuto
 - CI/CD - Continuous Integration Continuous Deployment, sometimes interchangibly used with Delivery, allows to automate the development stages. This isdone by automatically testing the code and as soon as the code is merged with a feature branch to automatically release the code to either production or a testing environemnt. In this project this is done via CircleCI. __Comments__
 
 
- Monitoring and testing the quality of model predictions after deployment is not yet implemented in the project. However, this is the next topic to tackle.  
-
+ Monitoring of the quality of model predictions after deployment is coming in next updates.
 
 ## Jupyter notebooks
-------------------------
+
 - Data gathering
 - Data analysis
 - Feature engineering
@@ -29,9 +27,24 @@ The goal of the project was to choose a dataset that was not yet popular in tuto
 
 add links here!!!
 
+## API
+
+API endpoints:
+
+## Regression model package installation
+You can configure your Python project to use Gemfury as the primary source of packages. To start, add Gemfury as the main index to the top of your project’s requirements.txt:
+
+>--index-url https://pypi.fury.io/screwdriver66/ \
+>--extra-index-url https://pypi.org/simple/ \
+> solar_prod_suvilahti_ml_model==0.1.1
+
+CONFIGURE THIS!
+
+## Documentation
+
 
 ## Licenses
---------------------------------
+
 - The source code is under the GNU GPL v3 license [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 - Weather observation part of the data set, downloaded from https://en.ilmatieteenlaitos.fi/open-data, prior to its modification is under [Creative Commons Attribution 4.0 International

@@ -14,9 +14,9 @@ def load_dataset(*, filename: str) -> pd.DataFrame:
     _data = _data.set_index(pd.DatetimeIndex(pd.to_datetime(_data[config.DATETIME_INDEX], utc=True),dayfirst=True))
     return _data
 
-def save_pipeline(*, pipeline_to_persist) -> None:
+def save_pipeline(*, pipeline_to_save) -> None:
     """
-    Persist the pipeline.
+    Save the pipeline.
     Saves the versioned model, and overwrites any previous
     saved models. This ensures that when the package is
     published, there is only one trained model that can be
@@ -31,7 +31,8 @@ def save_pipeline(*, pipeline_to_persist) -> None:
     _logger.info(f"saved pipeline: {save_file_name}")
 
 def load_pipeline(*, file_name: str) -> Pipeline:
-    """Load persisted pipeline"""
+    """Load saved pipeline"""
+    #CHANGE ALL FILE_NAME into FILENAME and ALSO IN DOC
 
     file_path = config.TRAINED_MODEL_DIR / file_name
     trained_model = joblib.load(filename = file_path)

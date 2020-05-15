@@ -5,31 +5,6 @@ from sklearn.base import BaseEstimator, TransformerMixin
 from regression_model.processing.errors import InvalidModelInputError
 from regression_model.processing.solar_calculation_functions import *
 
-###
-
-# List of all preprocessor steps:
-# 1. Air and Dew-point temperature minssing values imputation from another file
-#    for a period.
-# 2. Dropping NA in the rest of the data.
-# 3. Target variable 2x outliers fixed
-# 1, 2 and 3 are done outside of the pipeline
-# the file with first 3 are done in the notebooks
-
-# 4. Discretization
-#   4.1 Wind Direction into bins and bin-number-categories
-#   4.2 Precipitation intensity -> binary 0,1
-#   4.3 Cloud amount -> binary <5 == 0, >=5 ==1
-
-# 5. Additional features
-#   5.1 Hour of the day
-#   5.2 Day of the year
-#   5.3 Solar elevation angle
-#   5.4 Sun azimuth
-#   5.5 Theoretical global radiation
-
-# 6. Drop features: Gust of wind, Snow depth, Horizontal visibility, datetime
-# 7. Scale (StandardScaler)
-
 class WindDiscretizer(BaseEstimator, TransformerMixin):
     '''Discretization of Wind'''
     def __init__(self, variables=None):
