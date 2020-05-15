@@ -15,7 +15,7 @@ pandas DatetimeIndex.
     Parameters- filename: str                          
                 Path to the file.
 
-    Outputs- Pandas DataFrame object with DatetimeIndex
+    Outputs- pandas.DataFrame object with DatetimeIndex
 
 > save_pipeline(pipeline_to_persist):
 

@@ -1,5 +1,5 @@
 
-# Preprocessors
+# Preprocessors [source]
 The preprocessors are Scikit-learn-based custom transformers used to prepare the data for the pipeline. At the beginning of our pipeline our train.csv and test.csv had no NaN values prior to training due to how they were saved after the preprocessing jupyter notebook and due to the fact that you cannot drop NaN if you compel to Scikit-learn API, however you could impute them. Rows that absolutely had to be removed, were removed previously. During prediction, the validation function in validation.py (documentation link to validation.md) drops NaN's in the input data.
 
 List of steps taken in the jupyter notebook:
