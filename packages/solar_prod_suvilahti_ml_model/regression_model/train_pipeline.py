@@ -25,7 +25,7 @@ def run_training() -> None:
     pipeline.energy_pipe.fit(X_train[config.FEATURES], y_train)
 
     _logger.info(f"saving model version: {_version}")
-    save_pipeline(pipeline_to_persist=pipeline.energy_pipe)
+    save_pipeline(pipeline_to_save=pipeline.energy_pipe)
 
 if __name__ == "__main__":
     run_training()
