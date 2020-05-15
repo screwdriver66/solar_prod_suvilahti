@@ -1,6 +1,7 @@
 # API reference
 
-Some text here!
+Get the prediction values from the regression model either in a POST request or use the GET method to view predictions
+in a rendered HTML page visualized in the bar chart.
 
 <!-- 2. Endpoints and methods
 
