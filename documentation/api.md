@@ -51,11 +51,20 @@ in a rendered HTML page visualized in the bar chart.
   Returns predictions, version and errors in JSON format.
 
   > { \
-  > 'predictions': predictions, \
+  > 'predictions': python list of floats, \
   >                'version': version, \
   >                    'errors': errors \
   >}
 
 Example request:
 
-> ('http://127.0.0.1:5000//v1/predict/regression',json=json.loads(json_data))???????
+> import requests \
+> import json \
+> response = requests.post('http://127.0.0.1:5000/v1/predict/regression',json=json.loads(data)) \
+
+Example response:
+> { \
+> 'predictions': [196.40, 211.97, 6.17, ..., 133.08], \
+>                'version': 0.1.1, \
+>                    'errors': None \
+>}
