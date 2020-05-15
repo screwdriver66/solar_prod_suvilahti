@@ -68,3 +68,20 @@ Example response:
 >                'version': 0.1.1, \
 >                    'errors': None \
 >}
+
+### Schema
+
+|           Variable          |  Type |
+|:---------------------------:|:-----:|
+|      datetime_converted     |  str  |
+|         CloudAmount         |  int  |
+|       Pressure_msl_hpa      | float |
+|   RelativeHumidity_percent  | float |
+| PrecipitationIntensity_mm_h | float |
+|     AirTemperature_degC     | float |
+|   DewPointTemperature_degC  | float |
+|        WindDirection        |  int  |
+|        GustSpeed_m_s        | float |
+|        WindSpeed_m_s        | float |
+|          Energy_kWh         | float |
+|     GlobalRadiation_W_m2    | float |
