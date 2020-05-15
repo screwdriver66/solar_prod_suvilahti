@@ -6,19 +6,12 @@ import os
 import sys
 
 PACKAGE_ROOT = pathlib.Path(__file__).resolve().parent.parent
-DATASET_DIR = PACKAGE_ROOT / 'datasets'
 FORMATTER = logging.Formatter(
     "%(asctime)s — %(name)s — %(levelname)s —"
     "%(funcName)s:%(lineno)d — %(message)s")
 LOG_DIR = PACKAGE_ROOT / 'logs'
 LOG_DIR.mkdir(exist_ok=True)
 LOG_FILE = LOG_DIR / 'ml_api.log'
-TESTING_DATA_FILE = 'test.csv'
-# DATETIME_INDEX = "datetime_converted"
-# PREDICTION_PLACE = 'Kumpula'
-# RADIATION_ACCUMULATION = 'radiation_global_accumulation'
-# GLOBAL_RADIATION = regr_config.GLOBAL_RADIATION
-# DATETIME_INDEX = regr_config.DATETIME_INDEX
 
 def get_console_handler():
     console_handler = logging.StreamHandler(sys.stdout)

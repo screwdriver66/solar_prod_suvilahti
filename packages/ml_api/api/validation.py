@@ -11,7 +11,6 @@ class InvalidInputError(Exception):
 
 class WeatherDataRequestSchema(Schema):
     #list vars here
-    # datetime_converted = fields.Int()
     datetime_converted = fields.Str()
     CloudAmount = fields.Integer()
     Pressure_msl_hpa = fields.Float()

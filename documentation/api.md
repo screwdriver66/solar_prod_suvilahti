@@ -58,6 +58,4 @@ in a rendered HTML page visualized in the bar chart.
 
 Example request:
 
->
->
->
+> ('http://127.0.0.1:5000//v1/predict/regression',json=json.loads(json_data))???????
