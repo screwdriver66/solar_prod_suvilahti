@@ -14,7 +14,7 @@ The goal of the project was to choose a dataset that was not yet popular in tuto
 - CI/CD - Continuous Integration Continuous Deployment, sometimes interchangibly used with Delivery, allows to automate the development stages. This isdone by automatically testing the code and as soon as the code is merged with a feature branch to automatically release the code to either production or a testing environemnt. In this project this is done via CircleCI. __Comments__
 
 
- Monitoring of the quality of model predictions after deployment is coming in next updates.
+ Monitoring of the quality of model predictions after deployment and more elaborated testing is coming in next updates.
 
 ## API
 

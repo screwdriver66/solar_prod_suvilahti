@@ -60,7 +60,7 @@ Example request:
 
 > import requests \
 > import json \
-> response = requests.post('http://127.0.0.1:5000/v1/predict/regression',json=json.loads(data)) \
+> response = requests.post('http://127.0.0.1:5000/v1/predict/regression',json=json.loads(data))
 
 Example response:
 > { \
