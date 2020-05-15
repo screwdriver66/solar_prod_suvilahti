@@ -22,7 +22,6 @@ Some text here!
 
   | Method |        Endpoint        |                      Description                      |
   |:------:|:----------------------:|:-----------------------------------------------------:|
-  |   GET  |         /health        |          Returns health status of the server          |
   |   GET  |        /version        |        Returns regression model and API version       |
   |   GET  |       /bar_chart       | Returns an HTML page the latest predictions  |
   |  POST  | /v1/predict/regression |        Returns predictions, version and errors        |
@@ -55,3 +54,9 @@ Some text here!
   >                'version': version, \
   >                    'errors': errors \
   >}
+
+Example request:
+
+>
+>
+>
