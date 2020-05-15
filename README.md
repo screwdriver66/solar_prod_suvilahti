@@ -16,17 +16,6 @@ The goal of the project was to choose a dataset that was not yet popular in tuto
 
  Monitoring of the quality of model predictions after deployment is coming in next updates.
 
-## Jupyter notebooks
-
-- Data gathering
-- Data analysis
-- Feature engineering
-- Feature selection
-- Model building
-- Model deployment
-
-add links here!!!
-
 ## API
 
 Get the prediction values from the regression model either in a POST request or use the GET method to view predictions in a rendered HTML page visualized in the bar chart. [[source]()]
@@ -54,6 +43,16 @@ Regression model documentation consists of:
 - Validation [[source]()]
 - Fetching weather forecast [[source]()]
 - Solar feature calculation functions [[source]()]
+
+## Jupyter notebooks
+
+- Data gathering [[source]()]
+- Data analysis [[source]()]
+- Feature engineering [[source]()]
+- Feature selection [[source]()]
+- Model building [[source]()]
+- Model deployment [[source]()]
+
 
 ## Licenses
 
