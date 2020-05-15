@@ -29,7 +29,7 @@ add links here!!!
 
 ## API
 
-API endpoints:
+Get the prediction values from the regression model either in a POST request or use the GET method to view predictions in a rendered HTML page visualized in the bar chart. [[source]()]
 
 ## Regression model package installation
 You can configure your Python project to use Gemfury as the primary source of packages. To start, add Gemfury as the main index to the top of your project’s requirements.txt:
