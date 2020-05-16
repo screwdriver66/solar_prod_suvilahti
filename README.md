@@ -20,10 +20,9 @@ The goal of the project was to choose a dataset that was not yet popular in tuto
 
 Get the prediction values from the regression model either in a POST request or use the GET method to view predictions in a rendered HTML page visualized in the bar chart. [[source](https://github.com/screwdriver66/solar_prod_suvilahti/blob/master/documentation/api.md)]
 
-<!-- ## Regression model package installation
-You can configure your Python project to use Gemfury as the primary source of packages. To start, add Gemfury as the main index to the top of your project’s requirements.txt:
+## Regression model package installation
 
-CONFIGURE THIS! -->
+> pip install solar-prod-suvilahti-ml-model
 
 ## Documentation
 
