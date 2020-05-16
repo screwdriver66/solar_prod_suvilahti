@@ -1,6 +1,6 @@
 # Solar Production Suvilahti Regression Model
 
-This is an end-to-end machine learning project that provides hourly prediction of produced energy at Suvilahti PV plant for the upcoming 36 hours. Prediction values are obtained through a regression model that utilizes the Finnish Meteorological Institute (FMI) open data and weather API as input parameters.
+This is a package containing a regression model and a ML pipeline for an end-to-end machine learning project that provides hourly prediction of produced energy at Suvilahti PV plant for the upcoming 36 hours. The model utilizes the Finnish Meteorological Institute (FMI) open data and weather API as input parameters. Github project [source](https://github.com/screwdriver66/solar_prod_suvilahti).
 
 ## Documentation
 

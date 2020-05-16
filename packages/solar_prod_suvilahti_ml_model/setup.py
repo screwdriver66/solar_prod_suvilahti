@@ -8,7 +8,7 @@ from setuptools import find_packages, setup
 
 #package meta-data.
 NAME = 'solar_prod_suvilahti_ml_model'
-DESCRIPTION = 'Study project. Train and deploy a regression model to predict Solar Energy Production.'
+DESCRIPTION = 'Study project. A regression model to predict Solar Energy Production.'
 URL = 'https://github.com/screwdriver66/solar_prod_suvilahti'
 EMAIL = 'simo.uimonen@gmail.com'
 AUTHOR = 'Semen Uimonen'
