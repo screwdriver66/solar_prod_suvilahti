@@ -35,19 +35,21 @@ jobs:
             echo -e "username = __token__" >> ~/.pypirc
             echo -e "password = $PYPI_PWS_SOLAR" >> ~/.pypirc
       - run:
-        #create the package
+         #create the package
           name: create packages
-          command:
+          command: |
             . venv/bin/activate
             PYTHONPATH=packages/solar_prod_suvilahti_ml_model python setup.py sdist
             PYTHONPATH=packages/solar_prod_suvilahti_ml_model python setup.py bdist_wheel
-            twine upload dist/*
-      #here is place to save the artifact and run some tests
-      # - run:
-      #     name: upload to pypi
-      #     command: |
-      #       . venv/bin/activate
-      #       twine upload dist/*
+            ls
+
+      # here is place to save the artifact and run some tests
+      - run:
+          name: upload to pypi
+          command: |
+            . venv/bin/activate
+            pwd
+            PYTHONPATH=packages/solar_prod_suvilahti_ml_model twine upload dist/*
 
   # test_ml_api:
   #   working_directory: ~/project
