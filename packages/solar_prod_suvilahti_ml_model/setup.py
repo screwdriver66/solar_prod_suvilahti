@@ -36,6 +36,8 @@ with open(PACKAGE_DIR / 'VERSION') as f:
     _version = f.read().strip()
     about['__version__'] = _version
 
+VERSION = _version
+
 setup(
     name=NAME,
     version=about['__version__'],

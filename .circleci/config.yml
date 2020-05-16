@@ -13,24 +13,24 @@ jobs:
             . venv/bin/activate
             pip install --upgrade pip
             pip install -r packages/solar_prod_suvilahti_ml_model/requirements.txt
-            py.test -vv packages/regression_model/tests
+            py.test -vv packages/solar_prod_suvilahti_ml_model/tests
 
-  test_ml_api:
-    working_directory: ~/project
-    docker:
-      - image: circleci/python:3.7.2
-    steps:
-      - checkout
-      - run:
-          name: Runnning tests
-          command: |
-            virtualenv venv
-            . venv/bin/activate
-            pip install --upgrade pip
-            pip install -r packages/ml_api/requirements.txt
-            py.test -vv packages/ml_api/tests
+  # test_ml_api:
+  #   working_directory: ~/project
+  #   docker:
+  #     - image: circleci/python:3.7.2
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: Runnning tests
+  #         command: |
+  #           virtualenv venv
+  #           . venv/bin/activate
+  #           pip install --upgrade pip
+  #           pip install -r packages/ml_api/requirements.txt
+  #           py.test -vv packages/ml_api/tests
 
-  upload_pretrained_regression_model:
+  build:
     working_directory: ~/project
     docker:
       - image: circleci/python:3.7.2
@@ -41,28 +41,66 @@ jobs:
           command: |
             virtualenv venv
             . venv/bin/activate
-            pip install -r packages/regression_model/requirements.txt
+            pip install -r packages/solar_prod_suvilahti_ml_model/requirements.txt
       - run:
-          name: Publish model
+        #creating .pypirc file with env-variable-stored password
+          name: init .pypirc
+          command: |
+            echo -e "[pypi]" >> ~/.pypirc
+            echo -e "username = __token__" >> ~/.pypirc
+            echo -e "password" = $PYPI_PWS_SOLAR" >> ~/.pypirc
+      - run:
+        #create the package
+          name: create packages
+          command: |
+            virtualenv venv
+            . venv/bin/activate
+            python setup.py sdist
+            python setup.py bdist_wheel
+
+  deploy:
+    working_directory: ~/project
+    docker:
+      - image: circleci/python:3.7.2
+    steps:
+      - checkout
+      - run:
+          name: Setup env
+          command: |
+            virtualenv venv
+            . venv/bin/activate
+            pip install -r packages/solar_prod_suvilahti_ml_model/requirements.txt
+      - run:
+          name: upload to pypi
           command: |
             . venv/bin/activate
-            ./scripts/publish_model.sh ./solar_prod_suvilahti_ml_model/
+            twine upload dist/*
+
+
 
 workflows:
   version: 2
   test-all:
     jobs:
       - test_regression_model
-      - test_ml_api
-      - upload_pretrained_regression_model
-      - test_ml_api:
+      - build
+      - deploy
+      # - test_ml_api
+      # - test_ml_api:
+      #     requires:
+      #       - deploy
+      #     filters:
+      #       branches:
+      #         only: master
+      - deploy:
           requires:
-            - upload_pretrained_regression_model
+            - build
           filters:
             branches:
               only: master
-      - upload_pretrained_regression_model:
+      - build:
           requires:
-            filters:
-              branches:
-                only: master
+            - test_regression_model
+          filters:
+            branches:
+              only: master
