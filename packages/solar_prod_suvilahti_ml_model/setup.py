@@ -8,7 +8,7 @@ from setuptools import find_packages, setup
 
 #package meta-data.
 NAME = 'solar_prod_suvilahti_ml_model'
-DESCRIPTION = 'Study project. Train and deploy regression model to predict Solar Energy Production'
+DESCRIPTION = 'Study project. Train and deploy a regression model to predict Solar Energy Production.'
 URL = 'https://github.com/screwdriver66/solar_prod_suvilahti'
 EMAIL = 'simo.uimonen@gmail.com'
 AUTHOR = 'Semen Uimonen'
@@ -53,7 +53,7 @@ setup(
     include_package_data=True,
     license='GPLv3',
     classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
+        'Development Status :: 4 - Beta',
         'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',

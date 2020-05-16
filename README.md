@@ -1,4 +1,4 @@
-# Solar Production Suvilahti ML App regression model v 0.1.1, API v 0.1.0
+# Solar Production Suvilahti ML App regression model
 
 This is an end-to-end machine learning project that provides hourly prediction of produced energy at Suvilahti PV plant for the upcoming 36 hours. Prediction values are obtained through a regression model that utilizes the Finnish Meteorological Institute (FMI) open data and weather API as input parameters.
 
@@ -9,40 +9,25 @@ The goal of the project was to choose a dataset that was not yet popular in tuto
 - Research - problem statement, gathering tools, data and creating a vision of the solution. Carried out in Jupyter notebooks.
 - Development environment - translating solutions from research environment to development. This includes utilizing Scikit-learn API feature engineering transformers, creating custom transformers and creating a pipeline for regression model training. Additionally, it covers unit testing, validation of input data and training the regression model.
 
-- ML Application - testing and packaging the regression model as a python package and hosting it on an index server. Currently the package is hosted __HERE__  in Gemfury.
+- ML Application - testing and packaging the regression model as a python package and hosting it on an index server. Currently the package is hosted __HERE__ .
 - Model API - serving the model through REST API to serve our predictions and showcase the visualization as the result of the model predcition. API is utilized to decouple model development from the client facing layer. It would allow to later combine multiple models to be served at different API endpoints with a possibility to scale. The API is deployed through a Flask application that is run in a Docker container on Heroku, utilizing also the Gunicorn WSGI HTTP Server.
-- CI/CD - Continuous Integration Continuous Deployment, sometimes interchangibly used with Delivery, allows to automate the development stages. This isdone by automatically testing the code and as soon as the code is merged with a feature branch to automatically release the code to either production or a testing environemnt. In this project this is done via CircleCI. __Comments__
+- CI/CD - Continuous Integration Continuous Deployment, sometimes interchangibly used with Delivery, allows to automate the development stages. This is done by automatically testing the code and as soon as the code is merged with a feature branch to automatically release the code to either production or a testing environemnt. In this project this is done via CircleCI.
 
 
  Monitoring of the quality of model predictions after deployment and more elaborated testing is coming in next updates.
 
 ## API
 
-Get the prediction values from the regression model either in a POST request or use the GET method to view predictions in a rendered HTML page visualized in the bar chart. [[source]()]
+Get the prediction values from the regression model either in a POST request or use the GET method to view predictions in a rendered HTML page visualized in the bar chart. [[source](https://github.com/screwdriver66/solar_prod_suvilahti/blob/master/documentation/api.md)]
 
-## Regression model package installation
+<!-- ## Regression model package installation
 You can configure your Python project to use Gemfury as the primary source of packages. To start, add Gemfury as the main index to the top of your project’s requirements.txt:
 
->--index-url https://pypi.fury.io/screwdriver66/ \
->--extra-index-url https://pypi.org/simple/ \
-> solar_prod_suvilahti_ml_model==0.1.1
-
-CONFIGURE THIS!
+CONFIGURE THIS! -->
 
 ## Documentation
 
-Documentation can be subdivided into two parts: the API and the regression model references
-
-- API [[source]()]
-
-Regression model documentation consists of:
-
-- Pipeline description [[source]()]
-- Data management [[source]()]
-- Preprocessors [[source]()]
-- Validation [[source]()]
-- Fetching weather forecast [[source]()]
-- Solar feature calculation functions [[source]()]
+Documentation can be found in [[source](https://github.com/screwdriver66/solar_prod_suvilahti/tree/master/documentation)]
 
 ## Jupyter notebooks
 
