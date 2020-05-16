@@ -9,7 +9,7 @@ from regression_model.config import config
 
 # 1. Test wind discretizer
 def test_WindDiscretizer():
-    data = dm.load_dataset(filename=config.TRAINING_DATA_FILE)
+    data = dm.load_dataset(filename=config.TESTING_DATA_FILE)
     ct = pp.WindDiscretizer(variables=config.WIND_DISCRETE)
     data_t = ct.transform(data)
 
@@ -24,7 +24,7 @@ def test_WindDiscretizer():
 #   2.1 for var 1
 #   2.2 for var 2
 def test_DiscretizerNumericalIntoBinary():
-    data = dm.load_dataset(filename=config.TRAINING_DATA_FILE)
+    data = dm.load_dataset(filename=config.TESTING_DATA_FILE)
     ct = pp.DiscretizerNumericalIntoBinary(boundaries=config.BINARY_BOUNDARIES, variables=config.NUM_TO_BINARY)
     data_t = ct.transform(data)
 
@@ -36,7 +36,7 @@ def test_DiscretizerNumericalIntoBinary():
 
 # 3. test temporal hour
 def test_TemporalHour():
-    data = dm.load_dataset(filename=config.TRAINING_DATA_FILE)
+    data = dm.load_dataset(filename=config.TESTING_DATA_FILE)
     ct = pp.TemporalHour(variable=config.TEMPORAL_HOUR, ref_feature=config.DATETIME_INDEX)
     data_t = ct.transform(data)
     var = config.TEMPORAL_HOUR
@@ -48,7 +48,7 @@ def test_TemporalHour():
 
 # 4. test day of year
 def test_TemporalDayofYear():
-    data = dm.load_dataset(filename=config.TRAINING_DATA_FILE)
+    data = dm.load_dataset(filename=config.TESTING_DATA_FILE)
     ct = pp.TemporalDayofYear(variable=config.TEMPORAL_DAY, ref_feature=config.DATETIME_INDEX)
     data_t = ct.transform(data)
     var = config.TEMPORAL_DAY
@@ -60,7 +60,7 @@ def test_TemporalDayofYear():
 
 # 5. test solar angle
 def test_SolarElevAngle():
-    data = dm.load_dataset(filename=config.TRAINING_DATA_FILE)
+    data = dm.load_dataset(filename=config.TESTING_DATA_FILE)
     ct0 = pp.TemporalHour(variable=config.TEMPORAL_HOUR, ref_feature=config.DATETIME_INDEX)
     ct1 = pp.TemporalDayofYear(variable=config.TEMPORAL_DAY, ref_feature=config.DATETIME_INDEX)
     ct2 = pp.SolarElevAngle(var_name=config.SOLAR_ANGLE, day=config.TEMPORAL_DAY, hour=config.TEMPORAL_HOUR)
@@ -78,7 +78,7 @@ def test_SolarElevAngle():
 
 # 6. test sun_azimuth
 def test_SunAzimuth():
-    data = dm.load_dataset(filename=config.TRAINING_DATA_FILE)
+    data = dm.load_dataset(filename=config.TESTING_DATA_FILE)
     ct0 = pp.TemporalHour(variable=config.TEMPORAL_HOUR, ref_feature=config.DATETIME_INDEX)
     ct1 = pp.TemporalDayofYear(variable=config.TEMPORAL_DAY, ref_feature=config.DATETIME_INDEX)
     ct2 = pp.SolarElevAngle(var_name=config.SOLAR_ANGLE, day=config.TEMPORAL_DAY, hour=config.TEMPORAL_HOUR)
@@ -96,8 +96,8 @@ def test_SunAzimuth():
 
 # 7. test theoretical maximum solar radiation transformer
 def test_TheoreticalIrradiance():
-    data = dm.load_dataset(filename=config.TRAINING_DATA_FILE)
-    data = dm.load_dataset(filename=config.TRAINING_DATA_FILE)
+    data = dm.load_dataset(filename=config.TESTING_DATA_FILE)
+    data = dm.load_dataset(filename=config.TESTING_DATA_FILE)
     ct0 = pp.TemporalHour(variable=config.TEMPORAL_HOUR, ref_feature=config.DATETIME_INDEX)
     ct1 = pp.TemporalDayofYear(variable=config.TEMPORAL_DAY, ref_feature=config.DATETIME_INDEX)
     ct2 = pp.SolarElevAngle(var_name=config.SOLAR_ANGLE, day=config.TEMPORAL_DAY, hour=config.TEMPORAL_HOUR)
@@ -116,7 +116,7 @@ def test_TheoreticalIrradiance():
 
 # 8. test drop features
 def test_DropFeatures():
-    data = dm.load_dataset(filename=config.TRAINING_DATA_FILE)
+    data = dm.load_dataset(filename=config.TESTING_DATA_FILE)
     ct0 = pp.TemporalHour(variable=config.TEMPORAL_HOUR, ref_feature=config.DATETIME_INDEX)
     ct1 = pp.TemporalDayofYear(variable=config.TEMPORAL_DAY, ref_feature=config.DATETIME_INDEX)
     ct2 = pp.SolarElevAngle(var_name=config.SOLAR_ANGLE, day=config.TEMPORAL_DAY, hour=config.TEMPORAL_HOUR)
