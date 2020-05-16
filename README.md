@@ -31,7 +31,7 @@ CONFIGURE THIS!
 
 ## Documentation
 
-Documentation can be subdivided into two parts: the API and the regression model references.
+Documentation can be subdivided into two parts: the API and the regression model references
 
 - API [[source]()]
 
