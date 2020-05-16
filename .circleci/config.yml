@@ -43,11 +43,11 @@ jobs:
             PYTHONPATH=packages/solar_prod_suvilahti_ml_model python setup.py bdist_wheel
             twine upload dist/*
       #here is place to save the artifact and run some tests
-      - run:
-          name: upload to pypi
-          command: |
-            . venv/bin/activate
-            twine upload dist/*
+      # - run:
+      #     name: upload to pypi
+      #     command: |
+      #       . venv/bin/activate
+      #       twine upload dist/*
 
   # test_ml_api:
   #   working_directory: ~/project
