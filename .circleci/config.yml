@@ -15,22 +15,7 @@ jobs:
             pip install -r packages/solar_prod_suvilahti_ml_model/requirements.txt
             py.test -vv packages/solar_prod_suvilahti_ml_model/tests
 
-  # test_ml_api:
-  #   working_directory: ~/project
-  #   docker:
-  #     - image: circleci/python:3.7.2
-  #   steps:
-  #     - checkout
-  #     - run:
-  #         name: Runnning tests
-  #         command: |
-  #           virtualenv venv
-  #           . venv/bin/activate
-  #           pip install --upgrade pip
-  #           pip install -r packages/ml_api/requirements.txt
-  #           py.test -vv packages/ml_api/tests
-
-  build:
+  build_and_deploy:
     working_directory: ~/project
     docker:
       - image: circleci/python:3.7.2
@@ -56,34 +41,34 @@ jobs:
             . venv/bin/activate
             PYTHONPATH=packages/solar_prod_suvilahti_ml_model python setup.py sdist
             PYTHONPATH=packages/solar_prod_suvilahti_ml_model python setup.py bdist_wheel
-
-  deploy:
-    working_directory: ~/project
-    docker:
-      - image: circleci/python:3.7.2
-    steps:
-      - checkout
-      - run:
-          name: Setup env
-          command: |
-            virtualenv venv
-            . venv/bin/activate
-            pip install -r packages/solar_prod_suvilahti_ml_model/requirements.txt
+      #here is place to save the artifact and run some tests
       - run:
           name: upload to pypi
           command: |
             . venv/bin/activate
             PYTHONPATH=packages/solar_prod_suvilahti_ml_model twine upload dist/*
 
-
+  # test_ml_api:
+  #   working_directory: ~/project
+  #   docker:
+  #     - image: circleci/python:3.7.2
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: Runnning tests
+  #         command: |
+  #           virtualenv venv
+  #           . venv/bin/activate
+  #           pip install --upgrade pip
+  #           pip install -r packages/ml_api/requirements.txt
+  #           py.test -vv packages/ml_api/tests
 
 workflows:
   version: 2
   test-all:
     jobs:
       - test_regression_model
-      - build
-      - deploy
+      - build_and_deploy
       # - test_ml_api
       # - test_ml_api:
       #     requires:
@@ -91,13 +76,7 @@ workflows:
       #     filters:
       #       branches:
       #         only: master
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only: master
-      - build:
+      - build_and_deploy:
           requires:
             - test_regression_model
           filters:
