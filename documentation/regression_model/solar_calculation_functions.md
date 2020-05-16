@@ -1,4 +1,4 @@
-# Solar calculation functions [source]
+# Solar calculation functions [source](https://github.com/screwdriver66/solar_prod_suvilahti/blob/master/packages/solar_prod_suvilahti_ml_model/regression_model/processing/solar_calculation_functions.py)
 
 This file contains a collection of functions related to calculation of theoretical maximum available solar radiation and several other features used in the model. The source for these formulae
 is from chapter 2 of [Photovoltaic power generation modeling report by H.-P. Hellman, 2011](http://sgemfinalreport.fi/files/WP611_photovoltaics%20HP%20Hellman.pdf).

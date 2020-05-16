@@ -1,6 +1,6 @@
 
-# Preprocessors [source]
-The preprocessors are Scikit-learn-based custom transformers used to prepare the data for the pipeline. At the beginning of our pipeline our train.csv and test.csv had no NaN values prior to training due to how they were saved after the preprocessing jupyter notebook and due to the fact that you cannot drop NaN if you compel to Scikit-learn API, however you could impute them. Rows that absolutely had to be removed, were removed previously. During prediction, the validation function in validation.py (documentation link to validation.md) drops NaN's in the input data.
+# Preprocessors [source](https://github.com/screwdriver66/solar_prod_suvilahti/blob/master/packages/solar_prod_suvilahti_ml_model/regression_model/processing/preprocessors.py)
+The preprocessors are Scikit-learn-based custom transformers used to prepare the data for the pipeline. At the beginning of our pipeline our train.csv and test.csv had no NaN values prior to training due to how they were saved after the preprocessing jupyter notebook and due to the fact that you cannot drop NaN if you compel to [Scikit-learn API](https://scikit-learn.org/stable/modules/classes.html), however you could impute them. Rows that absolutely had to be removed, were removed previously. During prediction, the validation function in validation.py (documentation link to validation.md) drops NaN's in the input data.
 
 List of steps taken in the jupyter notebook:
 - 1. Air and Dew-point temperature minssing values imputation from another file for a period during 2017-2018.
@@ -21,4 +21,4 @@ The preprocessing in the pipeline consists of the following steps:
     - 5.5 Theoretical global radiation
 
 - 3. Drop unused features during training. ( Gust of wind speed, Snow depth, Horizontal visibility, datetime_converted )
-- 4. Feature Scaling (optional). Added a Scikit-learn StandardScaler() transformer to scale the data in case some ML algorithms would require it. The original model on Random Forest Regressor does not require scaling, however a Neural Network-based model would, thus, the option is here.
+- 4. Feature Scaling (optional). Added a [Scikit-learn StandardScaler()](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html) transformer to scale the data in case some ML algorithms would require it. The original model on Random Forest Regressor does not require scaling, however a Neural Network-based model would, thus, the option is here.

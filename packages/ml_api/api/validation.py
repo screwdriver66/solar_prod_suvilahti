@@ -7,7 +7,6 @@ import json
 class InvalidInputError(Exception):
     '''Invalid model input.'''
 
-# if there are any errors need to be changed in the syntax
 
 class WeatherDataRequestSchema(Schema):
     #list vars here
@@ -16,14 +15,13 @@ class WeatherDataRequestSchema(Schema):
     Pressure_msl_hpa = fields.Float()
     RelativeHumidity_percent = fields.Float()
     PrecipitationIntensity_mm_h = fields.Float()
-    # SnowDepth_cm = fields.Float()
     AirTemperature_degC = fields.Float()
     DewPointTemperature_degC = fields.Float()
     WindDirection = fields.Integer()
     GustSpeed_m_s = fields.Float()
     WindSpeed_m_s = fields.Float()
-    Energy_kWh = fields.Float() # SHOULD THIS REALLY BE PASSED TO INPUT DATA?
     GlobalRadiation_W_m2 = fields.Float()
+    Energy_kWh = fields.Float(allow_none=True)
 
 def _filter_error_rows(errors: dict,
                         validated_input: t.List[dict]

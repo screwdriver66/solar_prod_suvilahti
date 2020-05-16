@@ -128,3 +128,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+solar_prod_suvilahti_ml_model/regression_model/datasets/train.csv
