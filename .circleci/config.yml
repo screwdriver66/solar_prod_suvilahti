@@ -46,7 +46,7 @@ jobs:
           name: upload to pypi
           command: |
             . venv/bin/activate
-            PYTHONPATH=packages/solar_prod_suvilahti_ml_model twine upload dist/*
+            twine upload dist/*
 
   # test_ml_api:
   #   working_directory: ~/project
