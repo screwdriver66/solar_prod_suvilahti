@@ -23,10 +23,6 @@ def test_prediction_endpoint_validation_200(flask_test_client):
 
 def test_prediction_endpoint_validation_200_forecast_data(flask_test_client):
     # Given
-    # Load the test data from the regression_model package.
-    # This is important as it makes it harder for the test
-    # data versions to get confused by not spreading it
-    # across packages.
     test_data = get_forecast(place=reg_config.PREDICTION_PLACE)
     post_json = test_data.to_json(orient='records')
 

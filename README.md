@@ -14,20 +14,42 @@ The goal of the project was to choose a dataset that was not yet popular in tuto
 - CI/CD - Continuous Integration Continuous Deployment, sometimes interchangibly used with Delivery, allows to automate the development stages. This isdone by automatically testing the code and as soon as the code is merged with a feature branch to automatically release the code to either production or a testing environemnt. In this project this is done via CircleCI. __Comments__
 
 
- Monitoring and testing the quality of model predictions after deployment is not yet implemented in the project. However, this is the next topic to tackle.  
+ Monitoring of the quality of model predictions after deployment and more elaborated testing is coming in next updates.
 
+## API
+
+Get the prediction values from the regression model either in a POST request or use the GET method to view predictions in a rendered HTML page visualized in the bar chart. [[source]()]
+
+## Regression model package installation
+You can configure your Python project to use Gemfury as the primary source of packages. To start, add Gemfury as the main index to the top of your project’s requirements.txt:
+
+>--index-url https://pypi.fury.io/screwdriver66/ \
+>--extra-index-url https://pypi.org/simple/ \
+> solar_prod_suvilahti_ml_model==0.1.1
+
+CONFIGURE THIS!
+
+## Documentation
+
+Documentation can be subdivided into two parts: the API and the regression model references
+
+- API [[source]()]
+
+Regression model documentation consists of:
+
+- Pipeline description [[source]()]
+- Data management [[source]()]
+- Preprocessors [[source]()]
+- Validation [[source]()]
+- Fetching weather forecast [[source]()]
+- Solar feature calculation functions [[source]()]
 
 ## Jupyter notebooks
 
-- Data gathering
-- Data analysis
-- Feature engineering
-- Feature selection
-- Model building
-- Model deployment
-
-add links here!!!
-
+- Data gathering [[source]()]
+- Data analysis [[source]()]
+- Feature engineering [[source]()]
+- Model building [[source]()]
 
 ## Licenses
 
