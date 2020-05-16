@@ -39,10 +39,9 @@ jobs:
           name: create packages
           command: |
             . venv/bin/activate
-            ls
-            pwd
-            PYTHONPATH=packages/solar_prod_suvilahti_ml_model python setup.py sdist
-            PYTHONPATH=packages/solar_prod_suvilahti_ml_model python setup.py bdist_wheel
+            cd packages/solar_prod_suvilahti_ml_model
+            python setup.py sdist
+            python setup.py bdist_wheel
 
       # here is place to save the artifact and run some tests
       - run:
@@ -50,7 +49,8 @@ jobs:
           command: |
             . venv/bin/activate
             pwd
-            PYTHONPATH=packages/solar_prod_suvilahti_ml_model twine upload dist/*
+            cd packages/solar_prod_suvilahti_ml_model
+            twine upload dist/*
 
   # test_ml_api:
   #   working_directory: ~/project
