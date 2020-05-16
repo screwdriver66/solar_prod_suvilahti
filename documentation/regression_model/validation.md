@@ -1,4 +1,4 @@
-# Validation [source]
+# Validation [source](https://github.com/screwdriver66/solar_prod_suvilahti/blob/master/packages/solar_prod_suvilahti_ml_model/regression_model/processing/validation.py)
 
 Validation is used to make sure that input data for predictionand does not contain NaNs in the feature set
 

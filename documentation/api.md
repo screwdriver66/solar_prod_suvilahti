@@ -40,7 +40,7 @@ in a rendered HTML page visualized in the bar chart.
   Returns the HTML rendered template with the latest predictions of produced energy in kWh for the next 36 hours.
 
   1. Fetches the forecast data from the FMI API through [fmi_weather](https://github.com/kipe/fmi) python package.
-  2. Validates the input and uses it in the ML pipeline from solar_prod_suvilahti_ml_model package - rly??
+  2. Validates the input and uses it in the ML pipeline from solar_prod_suvilahti_ml_model package
   3. Predicts the values with make_prediction() method of the regression model package.
   4. Renders the predictions in the bar chart using the HTML page template.
 
@@ -84,4 +84,4 @@ Example response:
 |        GustSpeed_m_s        | float |
 |        WindSpeed_m_s        | float |
 |          Energy_kWh         | float |
-|     GlobalRadiation_W_m2    | float |
+|     GlobalRadiation_W_m2    | float (allow_none=True) |
