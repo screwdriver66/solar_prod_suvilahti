@@ -31,7 +31,7 @@ jobs:
   #           py.test -vv packages/ml_api/tests
 
   build:
-    working_directory: ~/project
+    working_directory: ~/project/packages/solar_prod_suvilahti_ml_model/
     docker:
       - image: circleci/python:3.7.2
     steps:
@@ -41,7 +41,7 @@ jobs:
           command: |
             virtualenv venv
             . venv/bin/activate
-            pip install -r packages/solar_prod_suvilahti_ml_model/requirements.txt
+            pip install -r requirements.txt
       - run:
         #creating .pypirc file with env-variable-stored password
           name: init .pypirc
@@ -69,7 +69,7 @@ jobs:
           command: |
             virtualenv venv
             . venv/bin/activate
-            pip install -r packages/solar_prod_suvilahti_ml_model/requirements.txt
+            pip install -r requirements.txt
       - run:
           name: upload to pypi
           command: |
