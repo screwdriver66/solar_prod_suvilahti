@@ -55,8 +55,8 @@ jobs:
           command: |
             virtualenv venv
             . venv/bin/activate
-            python packages/solar_prod_suvilahti_ml_model/setup.py sdist
-            python packages/solar_prod_suvilahti_ml_model/setup.py bdist_wheel
+            PYTHONPATH=./packages/solar_prod_suvilahti_ml_model/ python setup.py sdist
+            PYTHONPATH=./packages/solar_prod_suvilahti_ml_model/ python setup.py bdist_wheel
 
   deploy:
     working_directory: ~/project
@@ -74,7 +74,7 @@ jobs:
           name: upload to pypi
           command: |
             . venv/bin/activate
-            twine upload packages/solar_prod_suvilahti_ml_model/dist/*
+            PYTHONPATH=./packages/solar_prod_suvilahti_ml_model/ twine upload dist/*
 
 
 
