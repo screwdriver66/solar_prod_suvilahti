@@ -30,10 +30,12 @@ Documentation can be found in [[source](https://github.com/screwdriver66/solar_p
 
 ## Jupyter notebooks
 
-- Data gathering [[source]()]
+These will be added soon.
+
+<!-- - Data gathering [[source]()]
 - Data analysis [[source]()]
 - Feature engineering [[source]()]
-- Model building [[source]()]
+- Model building [[source]()] -->
 
 ## Licenses
 
