@@ -74,20 +74,20 @@ jobs:
             heroku container:release web --app $HEROKU_APP_NAME
 
 
-  # test_ml_api:
-  #   working_directory: ~/project/packages/ml_api
-  #   docker:
-  #     - image: circleci/python:3.7.2
-  #   steps:
-  #     - checkout
-  #     - run:
-  #         name: Runnning tests
-  #         command: |
-  #           virtualenv venv
-  #           . venv/bin/activate
-  #           pip install --upgrade pip
-  #           pip install -r packages/ml_api/requirements.txt
-  #           py.test -vv packages/ml_api/tests
+  test_ml_api:
+    working_directory: ~/project/packages/ml_api
+    docker:
+      - image: circleci/python:3.7.2
+    steps:
+      - checkout
+      - run:
+          name: Runnning tests
+          command: |
+            virtualenv venv
+            . venv/bin/activate
+            pip install --upgrade pip
+            pip install -r packages/ml_api/requirements.txt
+            py.test -vv packages/ml_api/tests
 
 workflows:
   version: 2
@@ -95,14 +95,14 @@ workflows:
     jobs:
       - test_regression_model
       # - build_and_deploy_python_package
-      - build_and_push_ml_api_to_heroku_docker
-      # - test_ml_api
-      # - test_ml_api:
-      #     requires:
-      #       - deploy
-      #     filters:
-      #       branches:
-      #         only: master
+      -
+      - test_ml_api
+      - test_ml_api:
+          requires:
+            - build_and_push_ml_api_to_heroku_docker
+          filters:
+            branches:
+              only: master
       # - build_and_deploy_python_package:
       #     requires:
       #       - test_regression_model
