@@ -1,10 +1,11 @@
---extra-index-url=${PIP_EXTRA_INDEX_URL}
-# or should we use gunicorn?
 # api
 flask==1.0.2
 
-# schema validation
+# Schema validation
 marshmallow==2.17.0
 
 # Install from pypi
 solar_prod_suvilahti_ml_model==0.1.4
+
+#  Deployment
+gunicorn==19.9.0

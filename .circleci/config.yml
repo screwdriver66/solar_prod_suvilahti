@@ -1,9 +1,14 @@
 version: 2
+
+defaults: &defaults
+  docker:
+    - image: circleci/python:3.7.2
+  working_directory: ~/project
+
+
 jobs:
   test_regression_model:
-    working_directory: ~/project
-    docker:
-      - image: circleci/python:3.7.2
+    <<: *defaults
     steps:
       - checkout
       - run:
@@ -15,45 +20,63 @@ jobs:
             pip install -r packages/solar_prod_suvilahti_ml_model/requirements.txt
             py.test -vv packages/solar_prod_suvilahti_ml_model/tests
 
-  build_and_deploy:
-    working_directory: ~/project
-    docker:
-      - image: circleci/python:3.7.2
+  # build_and_deploy_python_package:
+  #   <<: *defaults
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: Setup env
+  #         command: |
+  #           virtualenv venv
+  #           . venv/bin/activate
+  #           pip install -r packages/solar_prod_suvilahti_ml_model/requirements.txt
+  #     - run:
+  #       #creating .pypirc file with env-variable-stored password
+  #         name: Init .pypirc
+  #         command: |
+  #           echo -e "[pypi]" >> ~/.pypirc
+  #           echo -e "username = __token__" >> ~/.pypirc
+  #           echo -e "password = $PYPI_PWS_SOLAR" >> ~/.pypirc
+  #     - run:
+  #        #create the package
+  #         name: create packages
+  #         command: |
+  #           . venv/bin/activate
+  #           cd packages/solar_prod_suvilahti_ml_model
+  #           python setup.py sdist
+  #           python setup.py bdist_wheel
+  #     # here is place to save the artifact and run some tests
+  #     - run:
+  #         name: upload to pypi
+  #         command: |
+  #           . venv/bin/activate
+  #           pwd
+  #           cd packages/solar_prod_suvilahti_ml_model
+  #           twine upload dist/*
+
+  build_and_push_ml_api_to_heroku_docker:
+    <<: *defaults
     steps:
       - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run: docker login --username=$HEROKU_EMAIL --password=$HEROKU_API_KEY registry.heroku.com
       - run:
-          name: Setup env
+          name: Setup Heroku CLI
           command: |
-            virtualenv venv
-            . venv/bin/activate
-            pip install -r packages/solar_prod_suvilahti_ml_model/requirements.txt
+            wget -q0- https://cli-assets.heroku.com/install-ubuntu.sh | sh
       - run:
-        #creating .pypirc file with env-variable-stored password
-          name: init .pypirc
+          name: Build and Push Image
           command: |
-            echo -e "[pypi]" >> ~/.pypirc
-            echo -e "username = __token__" >> ~/.pypirc
-            echo -e "password = $PYPI_PWS_SOLAR" >> ~/.pypirc
+            make build-ml-api-heroku push-ml-api-heroku
       - run:
-         #create the package
-          name: create packages
+          name: Release to Heroku
           command: |
-            . venv/bin/activate
-            cd packages/solar_prod_suvilahti_ml_model
-            python setup.py sdist
-            python setup.py bdist_wheel
+            heroku container:release web --app $HEROKU_APP_NAME
 
-      # here is place to save the artifact and run some tests
-      - run:
-          name: upload to pypi
-          command: |
-            . venv/bin/activate
-            pwd
-            cd packages/solar_prod_suvilahti_ml_model
-            twine upload dist/*
 
   # test_ml_api:
-  #   working_directory: ~/project
+  #   working_directory: ~/project/packages/ml_api
   #   docker:
   #     - image: circleci/python:3.7.2
   #   steps:
@@ -72,7 +95,8 @@ workflows:
   test-all:
     jobs:
       - test_regression_model
-      - build_and_deploy
+      # - build_and_deploy_python_package
+      - build_and_push_ml_api_to_heroku_docker
       # - test_ml_api
       # - test_ml_api:
       #     requires:
@@ -80,7 +104,13 @@ workflows:
       #     filters:
       #       branches:
       #         only: master
-      - build_and_deploy:
+      # - build_and_deploy_python_package:
+      #     requires:
+      #       - test_regression_model
+      #     filters:
+      #       branches:
+      #         only: master
+      - build_and_deploy_python_package:
           requires:
             - test_regression_model
           filters:

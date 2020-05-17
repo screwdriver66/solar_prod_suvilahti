@@ -1,0 +1,9 @@
+jupyter_notebooks*
+*/env*
+*/venv*
+.circleci*
+packages/solar_prod_suvilahti_ml_model
+*.env
+*.log
+.git
+.gitignore

@@ -42,7 +42,6 @@ class Config:
     DEBUG = False
     TESTING = False
     CSRF_ENABLED = True
-    SECRET_KEY = 'ADD_SECRET_KEY'
     SERVER_PORT = 5000
 
 class ProductionConfig(Config):
