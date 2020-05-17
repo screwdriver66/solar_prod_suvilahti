@@ -1,6 +1,6 @@
 # Solar Production Suvilahti Machine Learning Application
 
-This is an end-to-end machine learning project that provides hourly prediction of produced energy at Suvilahti PV plant for the upcoming 36 hours. Prediction values are obtained through a regression model that utilizes the Finnish Meteorological Institute (FMI) open data and weather API as input parameters.
+This is an end-to-end machine learning project that provides hourly prediction of produced energy at Suvilahti PV plant for the upcoming 36 hours. Prediction values are obtained through a regression model that utilizes the Finnish Meteorological Institute (FMI) open data and weather API as input parameters. Perhaps in future, other PV plants could be added, such as Messukeskus, for example.
 
 ## Description
 
@@ -11,14 +11,14 @@ The goal of the project was to choose a dataset that was not yet popular in tuto
 
 - ML Application - testing and packaging the regression model as a python package and hosting it on an index server. Currently the package is hosted on pypi.org [[source](https://pypi.org/project/solar-prod-suvilahti-ml-model/)].
 - Model API - serving the model through REST API to serve our predictions and showcase the visualization as the result of the model predcition. API is utilized to decouple model development from the client facing layer. It would allow to later combine multiple models to be served at different API endpoints with a possibility to scale. The API is deployed through a Flask application that is run in a Docker container on Heroku, utilizing also the Gunicorn WSGI HTTP Server.
-- CI/CD - Continuous Integration Continuous Deployment, sometimes interchangibly used with Delivery, allows to automate the development stages. This is done by automatically testing the code and as soon as the code is merged with a feature branch to automatically release the code to either production or a testing environemnt. In this project this is done via CircleCI.
+- CI/CD - Continuous Integration Continuous Deployment, sometimes interchangibly used with Delivery, allows to automate the development stages. This is done by automatically testing the code and as soon as the code is merged with a feature branch to automatically release the code to either production or a testing environment. In this project this is done via CircleCI.
 
 
  Monitoring of the quality of model predictions after deployment and more elaborated testing is coming in next updates.
 
 ## API
 
-Get the prediction values from the regression model either in a POST request or use the GET method to view predictions in a rendered HTML page visualized in the bar chart. [[source](https://github.com/screwdriver66/solar_prod_suvilahti/blob/master/documentation/api.md)]
+Get the prediction values from the regression model either in a POST request or use the GET method to view predictions in a rendered HTML page visualized in the bar chart. The API is deployed on Heroku through a Docker container. [[source](https://github.com/screwdriver66/solar_prod_suvilahti/blob/master/documentation/api.md)]
 
 ## Regression model package installation
 
@@ -30,7 +30,7 @@ Documentation can be found in [[source](https://github.com/screwdriver66/solar_p
 
 ## Jupyter notebooks
 
-These will be added soon.
+Right now these are outdated. Will be reuploaded soon.
 
 <!-- - Data gathering [[source]()]
 - Data analysis [[source]()]
