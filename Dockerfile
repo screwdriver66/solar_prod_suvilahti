@@ -16,6 +16,6 @@ RUN chown -R ml-api-user:ml-api-user ./
 
 USER ml-api-username
 
-CMD gunicorn --0.0.0.0:$PORT wsgi
+EXPOSE 5000
 
 CMD ["bash", "./run.sh"]
