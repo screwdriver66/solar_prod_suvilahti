@@ -59,7 +59,6 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker:
-          docker_layer_caching: true
       - run: docker login --username=$HEROKU_EMAIL --password=$HEROKU_API_KEY registry.heroku.com
       - run:
           name: Setup Heroku CLI
@@ -110,7 +109,7 @@ workflows:
       #     filters:
       #       branches:
       #         only: master
-      - build_and_deploy_python_package:
+      - build_and_push_ml_api_to_heroku_docker:
           requires:
             - test_regression_model
           filters:

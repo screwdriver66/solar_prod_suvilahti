@@ -5,7 +5,6 @@ RUN adduser --disabled-password --gecos '' ml-api-user
 
 WORKDIR /opt/ml_api
 
-ARG PIP_EXTRA_INDEX_URL
 ENV FLASK_APP run.py
 
 ADD ./packages/ml_api /opt/ml_api/
