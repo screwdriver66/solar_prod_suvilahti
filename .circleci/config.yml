@@ -20,39 +20,39 @@ jobs:
             pip install -r packages/solar_prod_suvilahti_ml_model/requirements.txt
             py.test -vv packages/solar_prod_suvilahti_ml_model/tests
 
-  # build_and_deploy_python_package:
-  #   <<: *defaults
-  #   steps:
-  #     - checkout
-  #     - run:
-  #         name: Setup env
-  #         command: |
-  #           virtualenv venv
-  #           . venv/bin/activate
-  #           pip install -r packages/solar_prod_suvilahti_ml_model/requirements.txt
-  #     - run:
-  #       #creating .pypirc file with env-variable-stored password
-  #         name: Init .pypirc
-  #         command: |
-  #           echo -e "[pypi]" >> ~/.pypirc
-  #           echo -e "username = __token__" >> ~/.pypirc
-  #           echo -e "password = $PYPI_PWS_SOLAR" >> ~/.pypirc
-  #     - run:
-  #        #create the package
-  #         name: create packages
-  #         command: |
-  #           . venv/bin/activate
-  #           cd packages/solar_prod_suvilahti_ml_model
-  #           python setup.py sdist
-  #           python setup.py bdist_wheel
-  #     # here is place to save the artifact and run some tests
-  #     - run:
-  #         name: upload to pypi
-  #         command: |
-  #           . venv/bin/activate
-  #           pwd
-  #           cd packages/solar_prod_suvilahti_ml_model
-  #           twine upload dist/*
+  build_and_deploy_python_package:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: Setup env
+          command: |
+            virtualenv venv
+            . venv/bin/activate
+            pip install -r packages/solar_prod_suvilahti_ml_model/requirements.txt
+      - run:
+        #creating .pypirc file with env-variable-stored password
+          name: Init .pypirc
+          command: |
+            echo -e "[pypi]" >> ~/.pypirc
+            echo -e "username = __token__" >> ~/.pypirc
+            echo -e "password = $PYPI_PWS_SOLAR" >> ~/.pypirc
+      - run:
+         #create the package
+          name: create packages
+          command: |
+            . venv/bin/activate
+            cd packages/solar_prod_suvilahti_ml_model
+            python setup.py sdist
+            python setup.py bdist_wheel
+      # here is place to save the artifact and run some tests
+      - run:
+          name: upload to pypi
+          command: |
+            . venv/bin/activate
+            pwd
+            cd packages/solar_prod_suvilahti_ml_model
+            twine upload dist/*
 
   build_and_push_ml_api_to_heroku_docker:
     <<: *defaults
@@ -94,7 +94,7 @@ workflows:
   test-all:
     jobs:
       - test_regression_model
-      # - build_and_deploy_python_package
+      - build_and_deploy_python_package
       - build_and_push_ml_api_to_heroku_docker
       - test_ml_api
       - test_ml_api:
@@ -103,12 +103,12 @@ workflows:
           filters:
             branches:
               only: master
-      # - build_and_deploy_python_package:
-      #     requires:
-      #       - test_regression_model
-      #     filters:
-      #       branches:
-      #         only: master
+      - build_and_deploy_python_package:
+          requires:
+            - test_regression_model
+          filters:
+            branches:
+              only: master
       - build_and_push_ml_api_to_heroku_docker:
           requires:
             - test_regression_model
