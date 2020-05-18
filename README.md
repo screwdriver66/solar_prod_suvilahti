@@ -18,7 +18,7 @@ The goal of the project was to choose a dataset that was not yet popular in tuto
 
 ## API
 
-Get the prediction values from the regression model either in a POST request or use the GET method to view predictions in a rendered HTML page visualized in the bar chart. The API is deployed on Heroku through a Docker container. [[source](https://github.com/screwdriver66/solar_prod_suvilahti/blob/master/documentation/api.md)]
+Get the prediction values from the regression model either in a POST request or view predictions in a rendered HTML page visualized in the bar chart. The API is deployed in Heroku in a Docker container. [[source](https://github.com/screwdriver66/solar_prod_suvilahti/blob/master/documentation/api.md)]
 
 ## Regression model package installation
 
