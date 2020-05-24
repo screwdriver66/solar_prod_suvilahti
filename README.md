@@ -2,6 +2,28 @@
 
 This is an end-to-end machine learning project that provides hourly prediction of produced energy at Suvilahti PV plant for the upcoming 36 hours. Prediction values are obtained through a regression model that utilizes the Finnish Meteorological Institute (FMI) open data and weather API as input parameters. Perhaps in future, other PV plants could be added, such as Messukeskus, for example. Predictions can be accessed through a POST request to the API and are displayed on a rendered https://solar-production-suvilahti-ml.herokuapp.com/bar_chart
 
+## Upcoming updates:
+
+There are several updates queued for this project attempting to make it more complete. Originally, the main goal was to deploy a model in production. Now, after almost a week of progression and reading up on the underlying topical issues of ML systems and their deployment, I feel the urge to make appropriate changes to this portfolio project that would reflect in increasing the reliability of this system and lay the foundation of good practices for future projects and systems. 
+
+#### Sources:
+
+- [Hidden Technical Debt in Machine Learning Systems](https://papers.nips.cc/paper/5656-hidden-technical-debt-in-machine-learning-systems.pdf)
+- [The ML Test Score: A Rubric for ML Production Readiness and Technical Debt Reduction](https://storage.googleapis.com/pub-tools-public-publication-data/pdf/aad9f93b86b7addfea4c419b9100c6cdd26cacea.pdf)
+- [Google Cloud - MLOps: Continuous delivery and automation pipelines in machine learning](https://cloud.google.com/solutions/machine-learning/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning)
+- [Software Testing Guide - Martin Fowler](https://www.martinfowler.com/testing/)
+- [Obey the Testing Goat!](https://www.obeythetestinggoat.com/pages/book.html#toc)
+
+#### Changes tracker:
+
+- [ ] Quick fix for jupyter notebooks - releasing the updated commentary in the notebooks used for researc
+- [ ] Drastically improving the test coverage: Unit tests, Integration tests, Differential testing
+- [ ] Improving config files, importing them to strict YAML
+- [ ] Monitoring metrics and logs
+- [ ] Consequential documentation update
+
+__Work in progress__
+
 ## Description
 
 The goal of the project was to choose a dataset that was not yet popular in tutorials, create a ML model and to deploy it in production. The processes covered in the project can be subdivided into the following steps:
