@@ -4,7 +4,7 @@ This is an end-to-end machine learning project that provides hourly prediction o
 
 ## Upcoming updates:
 
-There are several updates queued for this project attempting to make it more complete. Originally, the main goal was to deploy a model in production. Now, after almost a week of progression and reading up on the underlying topical issues of ML systems and their deployment, I feel the urge to make appropriate changes to this portfolio project that would reflect in increasing the reliability of this system and lay the foundation of good practices for future projects and systems. 
+There are several updates queued for this project attempting to make it more complete. Originally, the main goal was to deploy a model in production. Now, after the initial deployment, spending time reading up on the underlying topical issues of ML systems and their deployment, I feel the urge to make appropriate changes to this portfolio project that would reflect in increasing the reliability of this system and lay the foundation of good practices for future projects and systems.
 
 #### Sources:
 
@@ -16,7 +16,8 @@ There are several updates queued for this project attempting to make it more com
 
 #### Changes tracker:
 
-- [ ] Quick fix for jupyter notebooks - releasing the updated commentary in the notebooks used for researc
+
+- [x] Jupyter notebooks - releasing the updated commentary in the notebooks used for research
 - [ ] Drastically improving the test coverage: Unit tests, Integration tests, Differential testing
 - [ ] Improving config files, importing them to strict YAML
 - [ ] Monitoring metrics and logs

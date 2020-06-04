@@ -22,6 +22,6 @@ energy_pipe = Pipeline(
         ('theor_solar_radiation', pp.TheoreticalRadiation(var_name=config.THEOR_SRAD, day=config.TEMPORAL_DAY, hour=config.TEMPORAL_HOUR)),
         ('drop_features', pp.DropUnnecessaryFeatures(variables_to_drop=config.DROP_FEATURES)),
         ("scaler", StandardScaler()),
-        ("random_forest", RandomForestRegressor(n_estimators=1000, max_depth=10, n_jobs= -1, random_state=42))
+        ("random_forest", RandomForestRegressor(n_estimators=500, min_samples_split=5, min_samples_leaf=1, max_features='sqrt',max_depth=30, bootstrap=False, n_jobs= -1, random_state=42))
     ]
 )
