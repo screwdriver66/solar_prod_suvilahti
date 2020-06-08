@@ -18,9 +18,10 @@ There are several updates queued for this project attempting to make it more com
 
 
 - [x] Jupyter notebooks - releasing the updated commentary in the notebooks used for research
-- [ ] Drastically improving the test coverage: Unit tests, Integration tests, Differential testing
+- [x] Improving the test coverage: Unit tests, Integration tests, Differential testing
 - [ ] Improving config files, importing them to strict YAML
-- [ ] Monitoring metrics and logs
+- [ ] Adding monitoring of metrics
+- [ ] Adding monitoring of logs
 - [ ] Consequential documentation update
 
 __Work in progress__
@@ -35,9 +36,6 @@ The goal of the project was to choose a dataset that was not yet popular in tuto
 - ML Application - testing and packaging the regression model as a python package and hosting it on an index server. Currently the package is hosted on pypi.org [[source](https://pypi.org/project/solar-prod-suvilahti-ml-model/)].
 - Model API - serving the model through REST API to serve our predictions and showcase the visualization as the result of the model predcition. API is utilized to decouple model development from the client facing layer. It would allow to later combine multiple models to be served at different API endpoints with a possibility to scale. The API is deployed through a Flask application that is run in a Docker container on Heroku, utilizing also the Gunicorn WSGI HTTP Server.
 - CI/CD - Continuous Integration Continuous Deployment, sometimes interchangibly used with Delivery, allows to automate the development stages. This is done by automatically testing the code and as soon as the code is merged with a feature branch to automatically release the code to either production or a testing environment. In this project this is done via CircleCI.
-
-
- Monitoring of the quality of model predictions after deployment and more elaborated testing is coming in next updates.
 
 ## API
 
