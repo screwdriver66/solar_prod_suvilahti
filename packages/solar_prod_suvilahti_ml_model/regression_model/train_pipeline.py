@@ -19,7 +19,7 @@ def run_training() -> None:
 
     #train test split
     X_train, X_test, y_train, y_test = train_test_split(
-        data[config.FEATURES], data[config.TARGET], test_size=0.2, random_state=42
+        data[config.FEATURES], data[config.TARGET], test_size=config.TEST_SIZE, random_state=config.RANDOM_STATE
     )
 
     pipeline.energy_pipe.fit(X_train[config.FEATURES], y_train)

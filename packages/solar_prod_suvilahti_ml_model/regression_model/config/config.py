@@ -17,7 +17,8 @@ TRAINING_DATA_FILE = "train.csv"
 TARGET = "Energy_kWh"
 DATETIME_INDEX = "datetime_converted"
 PREDICTION_PLACE = 'Kumpula'
-
+TEST_SIZE = 0.2
+RANDOM_STATE = 42
 #special vars
 RADIATION_ACCUMULATION = 'radiation_global_accumulation'
 GLOBAL_RADIATION = 'GlobalRadiation_W_m2'
